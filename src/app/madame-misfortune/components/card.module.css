@@ -18,8 +18,7 @@
   .selected {
     background: url('/img/tarot/card-back-selected.png') no-repeat center center;
     background-size: cover;
-    transform: scale(1.05);
-    box-shadow: 0 0 1rem white;;
+    box-shadow: 0 0 1rem white;
     transition: box-shadow 250ms;
   }
 
