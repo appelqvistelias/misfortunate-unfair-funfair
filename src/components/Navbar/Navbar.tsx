@@ -1,19 +1,24 @@
 import styles from "@/components/Navbar/Navbar.module.css";
+import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <div className={styles.navbar}>
-      <nav>
+    <nav>
+      <div className={styles.wrapper}>
         <p className={styles.logo}>Unfair Funfair</p>
         <ul className={styles.navList}>
           <li className={styles.listItem}>
-            <a href="/">Home</a>
+            <Link className={styles.link} href="/">
+              Home
+            </Link>
           </li>
           <li className={styles.listItem}>
-            <a href="/about">About</a>
+            <Link className={styles.link} href="/about">
+              About
+            </Link>
           </li>
         </ul>
-      </nav>
-    </div>
+      </div>
+    </nav>
   );
 }

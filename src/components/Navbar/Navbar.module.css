@@ -1,10 +1,11 @@
-.navbar {
+.wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   padding: 1rem 2rem;
   background-color: #780000;
+  color: bisque;
 }
 
 .logo {
@@ -21,4 +22,13 @@
 .listItem {
   font-size: 1.8rem;
   font-weight: 500;
+}
+
+.link {
+  text-decoration: none;
+  color: bisque;
+}
+
+.link:hover {
+  text-decoration: underline;
 }
