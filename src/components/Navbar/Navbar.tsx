@@ -6,8 +6,12 @@ export default function Navbar() {
       <nav>
         <p className={styles.logo}>Unfair Funfair</p>
         <ul className={styles.navList}>
-          <li className={styles.listItem}>Home</li>
-          <li className={styles.listItem}>About</li>
+          <li className={styles.listItem}>
+            <a href="/">Home</a>
+          </li>
+          <li className={styles.listItem}>
+            <a href="/about">About</a>
+          </li>
         </ul>
       </nav>
     </div>
