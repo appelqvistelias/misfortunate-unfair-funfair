@@ -1,0 +1,24 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 2rem;
+  background-color: #780000;
+}
+
+.logo {
+  font-size: 2.4rem;
+  font-weight: 900;
+}
+
+.navList {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.listItem {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
