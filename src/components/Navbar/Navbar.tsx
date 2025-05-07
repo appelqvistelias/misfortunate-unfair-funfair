@@ -17,6 +17,11 @@ export default function Navbar() {
               About
             </Link>
           </li>
+          <li className={styles.listItem}>
+            <Link className={styles.link} href="/curse-of-calculus">
+              Curse Of Calculus
+            </Link>
+          </li>
         </ul>
       </div>
     </nav>
