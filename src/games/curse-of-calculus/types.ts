@@ -8,6 +8,6 @@ export type CurseCard = {
   id: string;
   value: string;
   pairId: number;
-  isReveal: boolean;
+  isRevealed: boolean;
   isMatched: boolean;
 };
