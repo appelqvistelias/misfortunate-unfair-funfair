@@ -20,7 +20,7 @@ export default function MadameMisfortune() {
   const fetchDeck = async (): Promise<void> => {
     try {
       // Temporär mock-data tills API finns
-      const data: TarotCard[] = Array.from({ length: 10 }, (_, i) => ({
+      const data: TarotCard[] = Array.from({ length: 12 }, (_, i) => ({
         id: i,
         name: `Kort ${i + 1}`,
         suit: TarotSuit.Major,
