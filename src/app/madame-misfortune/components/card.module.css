@@ -1,0 +1,32 @@
+.card {
+    width: 150px;
+    height: 250px;
+    cursor: pointer;
+    transition: opacity 0.5s ease;
+    background: url('/img/tarot/card-back.png') no-repeat center center;
+    background-size: cover;
+    border-radius: .5rem;
+    transition: transform 250ms;
+  }
+  
+  .faded {
+    opacity: 0.3;
+    pointer-events: none;
+    transition: ease-in-out 500ms;
+  }
+  
+  .selected {
+    background: url('/img/tarot/card-back-selected.png') no-repeat center center;
+    background-size: cover;
+    box-shadow: 0 0 1rem white;
+    transition: box-shadow 250ms;
+  }
+
+  @media (hover: hover) {
+    .card:not(.selected):hover { 
+        transform: scale(1.05);
+        box-shadow: 0 0 1rem rgb(0, 0, 0, .2);
+    }
+  }
+
+  

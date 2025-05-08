@@ -1,0 +1,29 @@
+body {
+    background: black;
+    background: linear-gradient(#530068, #592B00);
+    min-height: 100vh;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.header, 
+.cards {
+    margin: 0 auto;
+    max-width: 850px;
+}
+
+.header {
+    padding: 4rem 0;
+    text-align: center;
+    color: white;
+    font-size: 1.6rem;
+}
+.header h1 {
+    color: #FFC85F;
+    font-family: 'parisienne';
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
