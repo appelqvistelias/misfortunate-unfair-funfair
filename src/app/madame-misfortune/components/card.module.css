@@ -1,12 +1,18 @@
 .card {
-    width: 100px;
-    height: 165px;
+    width: calc(50% - 4rem);
+    aspect-ratio: 100 / 165;
     cursor: pointer;
     transition: opacity 0.5s ease;
     background: url('/img/tarot/card-back.png') no-repeat center center;
     background-size: cover;
     border-radius: .5rem;
     transition: transform 250ms;
+    padding: 2rem;
+    background-size: cover;
+  }
+  
+  .card p {
+    color: black; /* to counter out the white default in madame.module.css */
   }
   
   .faded {
@@ -21,6 +27,13 @@
     box-shadow: 0 0 1rem white;
   }
 
+  .card.revealed {
+    width: 100%;
+    background: url('/img/tarot/card-front.png') no-repeat center center;
+    background-size: cover;
+    cursor: default;
+  }
+
   @media (hover: hover) {
     .card:not(.selected):hover { 
         transform: scale(1.05);
@@ -30,9 +43,16 @@
     }
   }
 
-  @media screen and (min-width: 510px) {
+  @media screen and (min-width: 620px) {
     .card {
-        width: 150px;
-        height: 250px;
+        max-width: 150px;
+        max-height: 250px;
     }
-}
+  }
+
+  @media screen and (min-width: 800px) {
+    .card.revealed {
+        max-width: 240px;
+        max-height: 400px;
+    }
+  }

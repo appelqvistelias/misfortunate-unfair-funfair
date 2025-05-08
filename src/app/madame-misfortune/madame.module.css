@@ -1,8 +1,10 @@
 body {
     font-family: 'Josefin Sans', serif;
+    font-size: 1.6rem;
     background: linear-gradient(#530068, #592B00);
     min-height: 100vh;
     padding: 2rem;
+    text-align: center;
 }
 body:after {
     content: "";
@@ -26,8 +28,6 @@ body:after {
 
 .header {
     padding: 4rem 0;
-    text-align: center;
-    color: white;
     font-size: 1.6rem;
 }
 .header h1 {
@@ -36,7 +36,9 @@ body:after {
     color: #FFC85F;
     margin: 0 0 2rem;
 }
-.header p {
+.header p,
+.cards p {
+    color: white;
     font-size: 1.6rem;
     line-height: 160%;
     font-weight: 400;
@@ -46,6 +48,7 @@ body:after {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+    align-items: center;
     justify-content: center;
 }
 
