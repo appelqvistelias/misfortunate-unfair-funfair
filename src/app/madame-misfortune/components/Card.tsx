@@ -32,13 +32,13 @@ export default function Card({
         `}
         onClick={handleClick}
       >
-        <img
-          src={isRevealed ? card.imageUrl : '/images/tarot/card-back.png'}
-          alt={card.name}
-          className={styles.cardImage}
-        />
         {isRevealed && (
           <>
+            <img
+                src={isRevealed ? card.imageUrl : '/images/tarot/card-back.png'}
+                alt={card.name}
+                className={styles.cardImage}
+            />
             <h3>{card.name}</h3>
             <p>{card.text}</p>
           </>
