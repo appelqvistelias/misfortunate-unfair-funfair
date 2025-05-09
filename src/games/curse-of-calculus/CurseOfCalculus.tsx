@@ -16,7 +16,7 @@ export default function CurseOfCalculus() {
     const pairs = mathPairs as CursePair[];
     const newCards = generateCards(pairs, card_pairs);
     setCards(newCards);
-  });
+  }, []);
 
   const handleCardClick = (card: CurseCard) => {
     if (card.isMatched || card.isRevealed || selectedCards.length === 2) return;
