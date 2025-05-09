@@ -17,6 +17,44 @@ export default function CurseOfCalculus() {
     const newCards = generateCards(pairs, card_pairs);
     setCards(newCards);
   });
+
+  const handleCardClick = (card: CurseCard) => {
+    if (card.isMatched || card.isRevealed || selectedCards.length === 2) return;
+
+    const revealedCard = { ...card, isRevealed: true };
+    const updatedCards = cards.map((c) =>
+      c.id === card.id ? revealedCard : c
+    );
+    setCards(updatedCards);
+    const newSelected = [...selectedCards, revealedCard];
+    setSelectedCards(newSelected);
+
+    if (newSelected.length === 2) {
+      const [first, second] = newSelected;
+      if (first.pairId === second.pairId && first.id !== second.id) {
+        setTimeout(() => {
+          setCards((prev) =>
+            prev.map((c) =>
+              c.pairId === first.pairId ? { ...c, isMatched: true } : c
+            )
+          );
+          setMatchedPairs((prev) => [...prev, first.pairId]);
+          setSelectedCards([]);
+        }, 500);
+      } else {
+        setTimeout(() => {
+          setCards((prev) =>
+            prev.map((c) =>
+              c.id === first.id || c.id === second.id
+                ? { ...c, isRevealed: false }
+                : c
+            )
+          );
+          setSelectedCards([]);
+        }, 1000);
+      }
+    }
+  };
 }
 
 // To do:
