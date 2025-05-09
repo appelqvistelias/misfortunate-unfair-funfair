@@ -3,22 +3,47 @@
 import styles from './card.module.css';
 import { TarotCard } from '../types';
 
-interface CardProps {
-  card: TarotCard;
-  isSelected: boolean;
-  isFaded: boolean;
-  onClick: (id: number) => void;
-}
+type CardProps = {
+    card: TarotCard;
+    isSelected: boolean;
+    isFaded?: boolean;
+    isRevealed?: boolean;
+    onClick?: (id: number) => void;
+};  
 
-export default function Card({ card, isSelected, isFaded, onClick }: CardProps) {
-  return (
-    <div
-      className={`${styles.card} ${isSelected ? styles.selected : ''} ${isFaded ? styles.faded : ''}`}
-      onClick={() => onClick(card.id)}
-    >
-        <div className={styles.back}>
-            {/* <img src={card.imageUrl} alt={card.name} /> */}
-        </div>
-    </div>
-  );
-}
+export default function Card({
+    card,
+    isSelected,
+    isFaded = false,
+    isRevealed = false,
+    onClick
+  }: CardProps) {
+    const handleClick = () => {
+      if (onClick) onClick(card.id);
+    };
+  
+    return (
+      <div
+        className={`
+            ${styles.card} 
+            ${isFaded ? styles.faded : ''} 
+            ${isSelected ? styles.selected : ''}
+            ${isRevealed ? styles.revealed : ''}
+        `}
+        onClick={handleClick}
+      >
+        {isRevealed && (
+          <>
+            <img
+                src={isRevealed ? card.imageUrl : '/images/tarot/card-back.png'}
+                alt={card.name}
+                className={styles.cardImage}
+            />
+            <h3>{card.name}</h3>
+            <p>{card.text}</p>
+          </>
+        )}
+      </div>
+    );
+  }
+  
