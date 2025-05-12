@@ -1,0 +1,29 @@
+.card {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 0.5rem;
+  font-size: 1.25rem;
+  border: 2px solid #ccc;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.revealed {
+  background-color: white;
+  border-color: gray;
+}
+
+.matched {
+  background-color: #a7f3d0;
+  cursor: default;
+}
+
+.hidden {
+  background-color: #e5e7eb;
+}
+
+.hidden:hover {
+  background-color: #d1d5db;
+}
