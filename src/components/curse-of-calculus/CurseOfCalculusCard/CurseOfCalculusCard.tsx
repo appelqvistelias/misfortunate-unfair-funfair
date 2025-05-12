@@ -14,12 +14,13 @@ export default function CurseOfCalculusCard({ card, onClick }: Props) {
     }
   };
 
-  return;
-  <button
-    className={styles.cursedCard}
-    onClick={handleClick}
-    disabled={card.isMatched}
-  >
-    {card.isRevealed || card.isMatched ? card.value : "?"}
-  </button>;
+  return (
+    <button
+      className={styles.cursedCard}
+      onClick={handleClick}
+      disabled={card.isMatched}
+    >
+      {card.isRevealed || card.isMatched ? card.value : "?"}
+    </button>
+  );
 }
