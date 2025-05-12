@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import mathPairs from "@/data/mathPairs.json";
+import GameBoard from "@/components/curse-of-calculus/GameBoard/GameBoard";
+import VictoryMessage from "@/components/curse-of-calculus/VictoryMessage/VictoryMessage";
 import { generateCards } from "@/games/curse-of-calculus/utils";
 import { CurseCard, CursePair } from "@/games/curse-of-calculus/types";
 
@@ -57,24 +59,9 @@ export default function CurseOfCalculus() {
   };
 
   return (
-    <div>
-      {cards.map((card) => (
-        <button
-          key={card.id}
-          onClick={() => handleCardClick(card)}
-          disabled={card.isMatched}
-          className={`p-4 text-lg rounded border transition ${
-            card.isMatched
-              ? "bg-green-200 cursor-default"
-              : card.isRevealed
-              ? "bg-white border-gray-400"
-              : "bg-gray-200 hover:bg-gray-300"
-          }`} // Temporary tailwind styling, will be changed
-        >
-          {card.isRevealed || card.isMatched ? card.value : "?"}
-        </button>
-      ))}
-      {matchedPairs.length === card_pairs && <div>🎉 You made it!</div>}
+    <div className="max-w-4xl mx-auto mt-10">
+      <GameBoard cards={cards} onCardClick={handleCardClick} />
+      {matchedPairs.length === card_pairs && <VictoryMessage />}
     </div>
   );
 }
