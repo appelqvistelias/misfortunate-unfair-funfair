@@ -11,7 +11,9 @@ const parisienne = Parisienne({ weight: "400" });
 
 export default function MadameMisfortuneGame() {
   const [selected, setSelected] = useState<number[]>([]);
-  const deck: ReadonlyArray<TarotCard> = deckData;
+  const [deck, setDeck] = useState<TarotCard[]>(() =>
+    [...deckData].sort(() => Math.random() - 0.5)
+  );
   const [step, setStep] = useState<"choose" | "reveal">("choose");
 
   const handleSelect = (id: number): void => {
@@ -30,7 +32,7 @@ export default function MadameMisfortuneGame() {
         <h1 style={parisienne.style}>Madame Misfortune</h1>
         {step === "choose" && (
           <p>
-            Prepare to learn what you’d rather not know, <br /> begin by picking
+            Prepare to learn what you'd rather not know, <br /> begin by picking
             three cards below...
           </p>
         )}
@@ -67,13 +69,6 @@ export default function MadameMisfortuneGame() {
               />
             );
           })}
-
-        {step === "reveal" && (
-          <p>
-            Your fate's been sealed, no need to scream, <br />
-            nor to pray – misfortune loves to lead the way.
-          </p>
-        )}
       </main>
     </>
   );
