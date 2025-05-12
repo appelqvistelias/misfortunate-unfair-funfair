@@ -1,5 +1,6 @@
 .wrapper {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   width: 100%;
@@ -15,6 +16,7 @@
 
 .navList {
   display: flex;
+  flex-direction: column;
   gap: 2rem;
   list-style: none;
 }
@@ -31,4 +33,11 @@
 
 .link:hover {
   text-decoration: underline;
+}
+
+@media screen and (min-width: 600px) {
+  .wrapper,
+  .navList {
+    flex-direction: row;
+  }
 }
