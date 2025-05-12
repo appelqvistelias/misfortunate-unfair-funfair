@@ -55,9 +55,26 @@ export default function CurseOfCalculus() {
       }
     }
   };
-}
 
-// To do:
-// Import pairs from .json file
-// Use utils function to generate random pairs
-// Handle states for cards, selected, matches etc
+  return (
+    <div>
+      {cards.map((card) => (
+        <button
+          key={card.id}
+          onClick={() => handleCardClick(card)}
+          disabled={card.isMatched}
+          className={`p-4 text-lg rounded border transition ${
+            card.isMatched
+              ? "bg-green-200 cursor-default"
+              : card.isRevealed
+              ? "bg-white border-gray-400"
+              : "bg-gray-200 hover:bg-gray-300"
+          }`} // Temporary tailwind styling, will be changed
+        >
+          {card.isRevealed || card.isMatched ? card.value : "?"}
+        </button>
+      ))}
+      {matchedPairs.length === card_pairs && <div>🎉 You made it!</div>}
+    </div>
+  );
+}
