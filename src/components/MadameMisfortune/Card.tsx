@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./card.module.css";
-import { TarotCard } from "../types";
+import { TarotCard } from "./types";
 
 type CardProps = {
   card: TarotCard;
