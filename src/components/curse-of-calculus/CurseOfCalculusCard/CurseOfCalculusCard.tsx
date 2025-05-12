@@ -16,9 +16,15 @@ export default function CurseOfCalculusCard({ card, onClick }: Props) {
 
   return (
     <button
-      className={styles.cursedCard}
       onClick={handleClick}
       disabled={card.isMatched}
+      className={`${styles.card} ${
+        card.isMatched
+          ? styles.matched
+          : card.isRevealed
+          ? styles.revealed
+          : styles.hidden
+      }`}
     >
       {card.isRevealed || card.isMatched ? card.value : "?"}
     </button>
