@@ -1,3 +1,6 @@
+import { Josefin_Sans } from "next/font/google";
+const josefin_sans = Josefin_Sans({ subsets: ["latin"], weight: "400" });
+
 import React from "react";
 import styles from "@/components/curse-of-calculus/CurseOfCalculusCard/CurseOfCalculusCard.module.css";
 import { CurseCard } from "@/games/curse-of-calculus/types";
@@ -18,7 +21,7 @@ export default function CurseOfCalculusCard({ card, onClick }: Props) {
     <button
       onClick={handleClick}
       disabled={card.isMatched}
-      className={`${styles.card} ${
+      className={`${josefin_sans.className} ${styles.card} ${
         card.isMatched
           ? styles.matched
           : card.isRevealed
