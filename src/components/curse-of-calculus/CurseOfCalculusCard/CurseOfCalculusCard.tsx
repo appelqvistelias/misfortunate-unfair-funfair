@@ -26,7 +26,7 @@ export default function CurseOfCalculusCard({ card, onClick }: Props) {
           : styles.hidden
       }`}
     >
-      {card.isRevealed || card.isMatched ? card.value : "?"}
+      {card.isRevealed || card.isMatched ? card.value : ""}
     </button>
   );
 }
