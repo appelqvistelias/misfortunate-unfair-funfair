@@ -14,16 +14,23 @@ export default function CurseOfCalculusPage() {
       <Navbar />
       <main className={styles.mainWithBackground}>
         <div className={styles.wrapper}>
-          <h1 className={`${offside.className} ${styles.title}`}>
-            Curse of Calculus
-          </h1>
-          <div className={styles.paragraphContainer}>
-            <p className={`${josefin_sans.className} ${styles.paragraph}`}>
-              Remember asking in Math class: “Why do we learn this?”
-            </p>
-            <p className={`${josefin_sans.className} ${styles.paragraph}`}>
-              Welcome to why.
-            </p>
+          <div className={styles.introText}>
+            <h1 className={`${offside.className} ${styles.title}`}>
+              Curse of Calculus
+            </h1>
+            <div className={styles.paragraphContainer}>
+              <div className={styles.upperParagraphs}>
+                <p className={`${josefin_sans.className} ${styles.paragraph}`}>
+                  Remember asking in Math class:
+                </p>
+                <p className={`${josefin_sans.className} ${styles.paragraph}`}>
+                  “Why do we learn this?”
+                </p>
+              </div>
+              <p className={`${josefin_sans.className} ${styles.paragraph}`}>
+                Welcome to why.
+              </p>
+            </div>
           </div>
           <CurseOfCalculus />
         </div>

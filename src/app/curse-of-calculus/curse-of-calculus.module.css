@@ -11,7 +11,16 @@
 }
 
 .wrapper {
-  padding: 0.5rem;
+  padding: 1rem;
+}
+
+.introText {
+  padding: 10rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
 }
 
 .title {
@@ -23,6 +32,15 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  gap: 3rem;
+}
+
+.upperParagraphs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .paragraph {
