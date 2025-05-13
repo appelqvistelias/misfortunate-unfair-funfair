@@ -1,6 +1,6 @@
 .card {
-  width: 6rem;
-  height: 6rem;
+  width: 100%;
+  aspect-ratio: 1 / 1;
   border-radius: 0.5rem;
   font-size: 1.25rem;
   border: 2px solid #ccc;
