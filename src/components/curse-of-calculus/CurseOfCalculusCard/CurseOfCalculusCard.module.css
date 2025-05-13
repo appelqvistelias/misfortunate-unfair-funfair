@@ -13,8 +13,11 @@
   border: 1px solid #bc2222;
 }
 
-.hidden:hover {
-  background-color: #bc2222;
+@media (hover: hover) {
+  .hidden:hover {
+    background-color: #bc2222;
+    cursor: pointer;
+  }
 }
 
 .revealed {
