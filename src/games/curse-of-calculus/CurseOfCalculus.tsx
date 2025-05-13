@@ -59,7 +59,7 @@ export default function CurseOfCalculus() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto mt-10">
+    <div>
       <GameBoard cards={cards} onCardClick={handleCardClick} />
       {matchedPairs.length === card_pairs && <VictoryMessage />}
     </div>
