@@ -12,6 +12,7 @@
 
 .wrapper {
   padding: 1rem;
+  width: 100%;
 }
 
 .introText {
@@ -24,7 +25,7 @@
 }
 
 .title {
-  font-size: 3.2rem;
+  font-size: clamp(3.2rem, 8vw, 14rem);
 }
 
 .paragraphContainer {
@@ -44,5 +45,14 @@
 }
 
 .paragraph {
-  font-size: 1.6rem;
+  font-size: clamp(1.6rem, 2.5vw, 3.6rem);
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    padding: 5rem;
+  }
+  .introText {
+    padding: 20rem 0;
+  }
 }
