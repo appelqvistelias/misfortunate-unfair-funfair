@@ -1,0 +1,19 @@
+.mainWithBackground {
+  min-height: 100vh;
+  background-image: url("/img/curse-of-calculus/curse-of-calculus-bg.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #ffffff;
+}
+
+.title {
+  font-size: 3.2rem;
+}
+
+.paragraph {
+  font-size: 2rem;
+}
