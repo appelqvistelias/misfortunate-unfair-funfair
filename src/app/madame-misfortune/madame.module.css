@@ -1,19 +1,21 @@
-body {
+.body {
+  position: relative;
   font-family: "Josefin Sans", serif;
   font-size: 1.6rem;
   background: linear-gradient(#530068, #592b00);
   min-height: 100vh;
+  min-width: 100vw;
   text-align: center;
   padding-bottom: 4rem;
 }
-body:after {
+.body:after {
   content: "";
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
-  z-index: -1;
+  z-index: 1;
   background-image: url(/img/tarot/table.jpeg);
   background-size: cover;
   background-attachment: fixed;
@@ -26,6 +28,8 @@ body:after {
 .cards {
   margin: 0 auto;
   max-width: 1024px;
+  position: relative;
+  z-index: 2;
 }
 
 .header {
