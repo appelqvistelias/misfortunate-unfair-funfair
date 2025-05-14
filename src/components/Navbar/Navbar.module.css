@@ -1,14 +1,11 @@
 .navbar {
   position: relative;
-  background: #000;
-  color: #fff;
-}
-
-.wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
+  background: #000000;
+  color: #ffffff;
 }
 
 .logo {
