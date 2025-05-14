@@ -1,5 +1,8 @@
 "use client";
 
+import { Josefin_Sans } from "next/font/google";
+const josefin_sans = Josefin_Sans({ subsets: ["latin"], weight: "400" });
+
 import Link from "next/link";
 import { useState } from "react";
 import styles from "./Navbar.module.css";
@@ -8,7 +11,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header>
+    <header className={`${josefin_sans.className}`}>
       <nav className={styles.navbar}>
         <Link className={styles.logo} href="/" aria-label="Go to home page">
           Unfair Funfair
