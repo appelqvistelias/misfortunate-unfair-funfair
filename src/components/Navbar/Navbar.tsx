@@ -1,34 +1,50 @@
-import styles from "@/components/Navbar/Navbar.module.css";
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
+import styles from "./Navbar.module.css";
 
 export default function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <nav>
+    <nav className={styles.navbar}>
       <div className={styles.wrapper}>
         <p className={styles.logo}>Unfair Funfair</p>
-        <ul className={styles.navList}>
-          <li className={styles.listItem}>
-            <Link className={styles.link} href="/">
-              Home
-            </Link>
-          </li>
-          <li className={styles.listItem}>
-            <Link className={styles.link} href="/about">
-              About
-            </Link>
-          </li>
-          <li className={styles.listItem}>
-            <Link className={styles.link} href="/curse-of-calculus">
-              Curse Of Calculus
-            </Link>
-          </li>
-          <li className={styles.listItem}>
-            <Link className={styles.link} href="/madame-misfortune">
-              Madame Misfortune
-            </Link>
-          </li>
-        </ul>
+
+        <button
+          className={`${styles.hamburger} ${menuOpen ? styles.open : ""}`}
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+        >
+          <span />
+          <span />
+          <span />
+        </button>
       </div>
+
+      <ul className={`${styles.navList} ${menuOpen ? styles.navOpen : ""}`}>
+        <li>
+          <Link href="/" onClick={() => setMenuOpen(false)}>
+            Home
+          </Link>
+        </li>
+        <li>
+          <Link href="/about" onClick={() => setMenuOpen(false)}>
+            About
+          </Link>
+        </li>
+        <li>
+          <Link href="/curse-of-calculus" onClick={() => setMenuOpen(false)}>
+            Curse Of Calculus
+          </Link>
+        </li>
+        <li>
+          <Link href="/madame-misfortune" onClick={() => setMenuOpen(false)}>
+            Madame Misfortune
+          </Link>
+        </li>
+      </ul>
     </nav>
   );
 }

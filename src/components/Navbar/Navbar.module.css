@@ -1,43 +1,98 @@
+.navbar {
+  position: relative;
+  background: #000;
+  color: #fff;
+}
+
 .wrapper {
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  padding: 1rem 2rem;
-  background-color: #780000;
-  color: bisque;
+  padding: 1rem;
 }
 
 .logo {
-  font-size: 2.4rem;
-  font-weight: 900;
+  font-weight: bold;
+}
+
+.hamburger {
+  position: relative;
+  width: 2.4rem;
+  height: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hamburger span {
+  position: absolute;
+  width: 2.4rem;
+  height: 0.2rem;
+  background-color: #fff;
+  transition: 0.3s;
+}
+
+.hamburger span:nth-child(1) {
+  top: 0;
+}
+
+.hamburger span:nth-child(2) {
+  top: 0.9rem;
+}
+
+.hamburger span:nth-child(3) {
+  top: 1.8rem;
+}
+
+.open span:nth-child(1) {
+  transform: rotate(45deg);
+  top: 0.9rem;
+}
+
+.open span:nth-child(2) {
+  display: none;
+}
+
+.open span:nth-child(3) {
+  transform: rotate(-45deg);
+  top: 0.9rem;
 }
 
 .navList {
-  display: flex;
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #000;
   flex-direction: column;
-  gap: 2rem;
-  list-style: none;
+  padding: 1rem;
+  gap: 1rem;
 }
 
-.listItem {
-  font-size: 1.8rem;
-  font-weight: 500;
+.navOpen {
+  display: flex;
 }
 
-.link {
+.navList li a {
+  color: #fff;
   text-decoration: none;
-  color: bisque;
 }
 
-.link:hover {
-  text-decoration: underline;
-}
+@media (min-width: 768px) {
+  .hamburger {
+    display: none;
+  }
 
-@media screen and (min-width: 600px) {
-  .wrapper,
   .navList {
+    position: static;
+    display: flex;
     flex-direction: row;
+    justify-content: flex-end;
+    padding: 0;
+    gap: 1.5rem;
   }
 }
