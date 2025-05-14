@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "The Deadline",
+    "text": "You had your chance, you took your time. Now time's run out, a costly crime…"
+  },
+  {
+    "id": 2,
+    "name": "The Debt",
+    "text": "You borrowed hope, you spent it fast. The bill is due, it's come at last…"
+  },
+  {
+    "id": 3,
+    "name": "The Missed Call",
+    "text": "You let it ring, you turned away. Now silence answers every day."
+  },
+  {
+    "id": 4,
+    "name": "The Fork",
+    "text": "Left or right, you had to choose. You took them both, and still you lose."
+  },
+  {
+    "id": 5,
+    "name": "The Mirror",
+    "text": "You sought the truth in glass and light, but saw yourself and felt the fright."
+  },
+  {
+    "id": 6,
+    "name": "The Reciept",
+    "text": "You paid in haste, ignored the cost. Now count the things you've truly lost."
+  },
+  {
+    "id": 7,
+    "name": "The Laugh",
+    "text": "They laughed at you, you laughed back. Now laughter's gone, it's all going black."
+  },
+  {
+    "id": 8,
+    "name": "The Knot",
+    "text": "You tied your fate with tangled thread. Now every tug just fills with dread."
+  },
+  {
+    "id": 9,
+    "name": "The Gift",
+    "text": "Wrapped in ribbon, sealed with charm, but deep inside, it means you harm."
+  },
+  {
+    "id": 10,
+    "name": "The Shortcut",
+    "text": "You rushed ahead to save some time, prepare to pay for skipping the line."
+  },
+  {
+    "id": 11,
+    "name": "The Echo",
+    "text": "Your words return, but not the same – they twist, they turn, they call your name."
+  },
+  {
+    "id": 12,
+    "name": "The Choice",
+    "text": "You made your pick, the die was cast, too late to run, the spell is fast."
+  }
+]

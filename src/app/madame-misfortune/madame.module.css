@@ -1,0 +1,82 @@
+body {
+  font-family: "Josefin Sans", serif;
+  font-size: 1.6rem;
+  background: linear-gradient(#530068, #592b00);
+  min-height: 100vh;
+  text-align: center;
+  padding-bottom: 4rem;
+}
+body:after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  background-image: url(/img/tarot/table.jpeg);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  opacity: 0.2;
+  mix-blend-mode: hard-light;
+}
+
+.header,
+.cards {
+  margin: 0 auto;
+  max-width: 1024px;
+}
+
+.header {
+  padding: 4rem 0;
+  font-size: 1.6rem;
+}
+.header h1 {
+  font-weight: normal;
+  font-size: 3.6rem;
+  color: #ffc85f;
+  margin: 0 0 2rem;
+}
+.header p,
+.cards p {
+  color: white;
+  font-size: 1.6rem;
+  line-height: 160%;
+  font-weight: 400;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+@media screen and (min-width: 600px) {
+  .header h1 {
+    font-size: 4.8rem;
+  }
+  .header p {
+    font-size: 2rem;
+  }
+  .cards {
+    gap: 2rem;
+    padding: 0rem;
+    max-width: 600px;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .cards {
+    max-width: 800px;
+  }
+}
+
+@media screen and (min-width: 1024) {
+  .cards {
+    max-width: 1024px;
+  }
+}

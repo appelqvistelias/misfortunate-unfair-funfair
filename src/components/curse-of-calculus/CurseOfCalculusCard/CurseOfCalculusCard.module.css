@@ -1,0 +1,32 @@
+.card {
+  color: #ffffff;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hidden {
+  background-color: #780000;
+  border: 1px solid #bc2222;
+}
+
+@media (hover: hover) {
+  .hidden:hover {
+    background-color: #bc2222;
+    cursor: pointer;
+  }
+}
+
+.revealed {
+  background-color: #bc2222;
+  border: 1px solid #780000;
+}
+
+.matched {
+  background-color: #130000;
+  border: 1px solid #780000;
+  cursor: default;
+}

@@ -1,0 +1,121 @@
+.card {
+  width: calc(50% - 4rem);
+  aspect-ratio: 100 / 165;
+  cursor: pointer;
+  transition: opacity 0.5s ease;
+  background: url("/img/tarot/card-back.png") no-repeat center center;
+  background-size: cover;
+  border-radius: 0.5rem;
+  transition: transform 250ms;
+  padding: 4rem;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.card h2 {
+  font-size: 3rem;
+}
+.card p {
+  color: black; /* to counter out the white default in madame.module.css */
+  font-size: 2rem;
+}
+
+.faded {
+  opacity: 0.3;
+  pointer-events: none;
+  transition: ease-in-out 500ms;
+}
+
+.selected {
+  background: url("/img/tarot/card-back-selected.png") no-repeat center center;
+  background-size: cover;
+  box-shadow: 0 0 1rem white;
+}
+
+.card.revealed {
+  width: 100%;
+  background: url("/img/tarot/card-back.png") no-repeat center center;
+  background-size: cover;
+  cursor: default;
+  transition: transform 250ms;
+  animation: flip 0.8s forwards;
+  transform-style: preserve-3d;
+}
+
+.card.revealed h2,
+.card.revealed p {
+  opacity: 0;
+  animation: textReveal 0.2s forwards;
+  animation-delay: 0.8s; /* visas efter flip */
+}
+
+.card.revealed:nth-of-type(1) {
+  animation-delay: 0.5s;
+}
+.card.revealed:nth-of-type(2) {
+  animation-delay: 1s;
+}
+.card.revealed:nth-of-type(3) {
+  animation-delay: 1.5s;
+}
+
+.card.revealed:nth-of-type(1) h2,
+.card.revealed:nth-of-type(1) p {
+  animation-delay: 0.8s;
+}
+.card.revealed:nth-of-type(2) h2,
+.card.revealed:nth-of-type(2) p {
+  animation-delay: 1.3s;
+}
+.card.revealed:nth-of-type(3) h2,
+.card.revealed:nth-of-type(3) p {
+  animation-delay: 1.8s;
+}
+
+@keyframes flip {
+  0% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+    background: url("/img/tarot/card-front.png") no-repeat center center;
+    background-size: cover;
+  }
+}
+@keyframes textReveal {
+  to {
+    opacity: 1;
+  }
+}
+
+@media (hover: hover) {
+  .card:not(.selected):not(.revealed):hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 1rem rgb(0, 0, 0, 0.2);
+    box-shadow: 0 0 1rem white;
+    transition: scale box-shadow 5s ease-out;
+  }
+}
+
+@media screen and (min-width: 530px) {
+  .card.revealed {
+    max-width: 240px;
+    max-height: 400px;
+  }
+  .card h2 {
+    font-size: 2rem;
+  }
+  .card p {
+    font-size: 1.6rem;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .card {
+    max-width: 150px;
+    max-height: 250px;
+  }
+}
