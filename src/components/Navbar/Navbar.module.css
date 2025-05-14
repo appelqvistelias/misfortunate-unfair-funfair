@@ -9,7 +9,10 @@
 }
 
 .logo {
-  font-weight: bold;
+  text-decoration: none;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-size: clamp(1.8rem, 2.5vw, 3.6rem);
 }
 
 .hamburger {
