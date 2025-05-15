@@ -1,0 +1,63 @@
+.bodyPage {
+  position: relative;
+  font-family: "Josefin Sans", serif;
+  font-size: 1.6rem;
+  background: linear-gradient(#652a00, #000);
+  min-height: 100vh;
+  min-width: 100vw;
+  text-align: center;
+  padding-bottom: 4rem;
+}
+.bodyPage:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  background-image: url(/img/start-bg.png);
+  background-size: cover;
+  /* background-attachment: fixed; */
+  background-position: top center;
+  opacity: 1;
+  /* mix-blend-mode: hard-light; */
+}
+
+.header,
+.content {
+  margin: 0 auto;
+  max-width: 1024px;
+  position: relative;
+  z-index: 2;
+}
+
+.header {
+  min-height: 95vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header h1 {
+  color: white;
+  font-size: 4.8rem;
+  text-shadow: 0 0 0.5rem rgb(0, 0, 0, 0.5);
+}
+.header a {
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  letter-spacing: 0.3rem;
+  position: absolute;
+  bottom: 0;
+}
+
+.content {
+  padding: 4rem 0;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}

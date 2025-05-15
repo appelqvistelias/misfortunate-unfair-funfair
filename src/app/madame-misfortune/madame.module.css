@@ -6,6 +6,7 @@
   min-height: 100vh;
   min-width: 100vw;
   text-align: center;
+  padding-top: 7rem;
   padding-bottom: 4rem;
 }
 .body:after {
