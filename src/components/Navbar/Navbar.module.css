@@ -1,43 +1,104 @@
-.wrapper {
+.navbar {
+  position: absolute;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  padding: 1rem 2rem;
-  background-color: #780000;
-  color: bisque;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.7);
+  color: #ffffff;
+  z-index: 5;
+  width: 100vw;
 }
 
 .logo {
-  font-size: 2.4rem;
-  font-weight: 900;
+  text-decoration: none;
+  color: #ffffff;
+  text-transform: uppercase;
+  /* font-size: clamp(2.4rem, 2.5vw, 3.6rem); */
+  font-size: clamp(1.6rem, 1.8vw, 1.8rem);
+}
+
+.hamburger {
+  position: relative;
+  width: 2.4rem;
+  height: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hamburger span {
+  position: absolute;
+  width: 2.4rem;
+  height: 0.2rem;
+  background-color: #ffffff;
+  transition: 0.3s;
+}
+
+.hamburger span:nth-child(1) {
+  top: 0;
+}
+
+.hamburger span:nth-child(2) {
+  top: 0.9rem;
+}
+
+.hamburger span:nth-child(3) {
+  top: 1.8rem;
+}
+
+.open span:nth-child(1) {
+  transform: rotate(45deg);
+  top: 0.9rem;
+}
+
+.open span:nth-child(2) {
+  display: none;
+}
+
+.open span:nth-child(3) {
+  transform: rotate(-45deg);
+  top: 0.9rem;
 }
 
 .navList {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  position: absolute;
+  display: none;
   list-style: none;
+  top: 100%;
+  left: 0;
+  right: 0;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+  font-size: clamp(1.6rem, 1.8vw, 1.8rem);
+  background: rgba(0, 0, 0, 0.7);
 }
 
-.listItem {
-  font-size: 1.8rem;
-  font-weight: 500;
+.navOpen {
+  display: flex;
 }
 
-.link {
+.navList li a {
+  color: #ffffff;
   text-decoration: none;
-  color: bisque;
 }
 
-.link:hover {
-  text-decoration: underline;
-}
+@media (min-width: 768px) {
+  .hamburger {
+    display: none;
+  }
 
-@media screen and (min-width: 600px) {
-  .wrapper,
   .navList {
+    position: static;
+    display: flex;
     flex-direction: row;
+    justify-content: flex-end;
+    padding: 0;
+    gap: 1.5rem;
+    background: transparent;
   }
 }

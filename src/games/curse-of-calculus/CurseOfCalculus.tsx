@@ -7,7 +7,7 @@ import VictoryMessage from "@/components/curse-of-calculus/VictoryMessage/Victor
 import { generateCards } from "@/games/curse-of-calculus/utils";
 import { CurseCard, CursePair } from "@/games/curse-of-calculus/types";
 
-const card_pairs = 9;
+const CARD_PAIRS = 9;
 
 export default function CurseOfCalculus() {
   const [cards, setCards] = useState<CurseCard[]>([]);
@@ -16,7 +16,7 @@ export default function CurseOfCalculus() {
 
   useEffect(() => {
     const pairs = mathPairs as CursePair[];
-    const newCards = generateCards(pairs, card_pairs);
+    const newCards = generateCards(pairs, CARD_PAIRS);
     setCards(newCards);
   }, []);
 
@@ -61,7 +61,7 @@ export default function CurseOfCalculus() {
   return (
     <div>
       <GameBoard cards={cards} onCardClick={handleCardClick} />
-      {matchedPairs.length === card_pairs && <VictoryMessage />}
+      {matchedPairs.length === CARD_PAIRS && <VictoryMessage />}
     </div>
   );
 }

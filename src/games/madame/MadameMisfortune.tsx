@@ -7,7 +7,7 @@ import { TarotCard } from "../../components/MadameMisfortune/types";
 import { Parisienne } from "next/font/google";
 import deckData from "@/data/tarotCards.json";
 
-const parisienne = Parisienne({ weight: "400" });
+const parisienne = Parisienne({ weight: "400", subsets: ["latin-ext"] });
 
 export default function MadameMisfortuneGame() {
   const [selected, setSelected] = useState<number[]>([]);
@@ -27,7 +27,7 @@ export default function MadameMisfortuneGame() {
   };
 
   return (
-    <>
+    <section className={styles.body}>
       <header className={styles.header}>
         <h1 style={parisienne.style}>Madame Misfortune</h1>
         {step === "choose" && (
@@ -70,6 +70,6 @@ export default function MadameMisfortuneGame() {
             );
           })}
       </main>
-    </>
+    </section>
   );
 }
