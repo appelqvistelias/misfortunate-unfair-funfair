@@ -1,5 +1,6 @@
 import Navbar from "../components/Navbar/Navbar";
 import style from "./page.module.css";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -11,11 +12,24 @@ export default function Home() {
           <a href="#content">Scroll Down</a>
         </header>
         <main className={style.content} id="content">
+          <h2>Pick Your Poison</h2>
           <a href="">
-            <img src="/img/madame.png" alt="" />
+            <Image
+              src="/img/madame.png"
+              width="500"
+              height="500"
+              alt=""
+              className={style.image}
+            />
           </a>
           <a href="">
-            <img src="/img/calculus.png" alt="" />
+            <Image
+              src="/img/calculus.png"
+              width="500"
+              height="500"
+              alt=""
+              className={style.image}
+            />
           </a>
         </main>
       </section>

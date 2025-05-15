@@ -1,17 +1,17 @@
 "use client";
 
-import styles from "@/app/madame-misfortune/madame.module.css";
 import { useState } from "react";
 import Card from "../../components/MadameMisfortune/Card";
 import { TarotCard } from "../../components/MadameMisfortune/types";
 import { Parisienne } from "next/font/google";
 import deckData from "@/data/tarotCards.json";
+import styles from "@/app/madame-misfortune/madame.module.css";
 
 const parisienne = Parisienne({ weight: "400", subsets: ["latin-ext"] });
 
 export default function MadameMisfortuneGame() {
   const [selected, setSelected] = useState<number[]>([]);
-  const [deck, setDeck] = useState<TarotCard[]>(() =>
+  const [deck] = useState<TarotCard[]>(() =>
     [...deckData].sort(() => Math.random() - 0.5)
   );
   const [step, setStep] = useState<"choose" | "reveal">("choose");
@@ -32,14 +32,14 @@ export default function MadameMisfortuneGame() {
         <h1 style={parisienne.style}>Madame Misfortune</h1>
         {step === "choose" && (
           <p>
-            Prepare to learn what you'd rather not know, <br /> begin by picking
-            three cards below...
+            {`Prepare to learn what you'd rather not know, <br /> begin by
+            picking three cards below...`}
           </p>
         )}
         {step === "reveal" && (
           <p>
-            Three signs of doom from hand you've played, <br /> discover what
-            wicked fate's been laid...
+            {`Three signs of doom from hand you have played, <br /> discover what
+            wicked fate has been laid...`}
           </p>
         )}
       </header>
