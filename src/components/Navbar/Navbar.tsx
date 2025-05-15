@@ -39,15 +39,6 @@ export default function Navbar() {
           </li>
           <li>
             <Link
-              href="/about"
-              aria-label="Go to about page"
-              onClick={() => setMenuOpen(false)}
-            >
-              About
-            </Link>
-          </li>
-          <li>
-            <Link
               href="/curse-of-calculus"
               aria-label="Go to Curse of Calculus game page"
               onClick={() => setMenuOpen(false)}
