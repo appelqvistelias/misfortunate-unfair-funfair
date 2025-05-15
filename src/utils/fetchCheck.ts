@@ -35,10 +35,17 @@ export async function createTransaction(
     return {
       success: true,
     };
-  } catch (error: any) {
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return {
+        success: false,
+        message: error.message,
+      };
+    }
+
     return {
       success: false,
-      message: error.message || "Something went wrong",
+      message: "Something went wrong",
     };
   }
 }
