@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar/Navbar";
 import style from "./page.module.css";
-import Image from "next/image";
+import ImageLink from "@/components/ImageLink";
 
 export default function Home() {
   return (
@@ -13,24 +13,18 @@ export default function Home() {
         </header>
         <main className={style.content} id="content">
           <h2>Pick Your Poison</h2>
-          <a href="">
-            <Image
-              src="/img/madame.png"
-              width="500"
-              height="500"
-              alt=""
-              className={style.image}
-            />
-          </a>
-          <a href="">
-            <Image
-              src="/img/calculus.png"
-              width="500"
-              height="500"
-              alt=""
-              className={style.image}
-            />
-          </a>
+          <ImageLink
+            href="/madame-misfortune"
+            src="/img/madame.png"
+            alt="Madame"
+            className={style.image}
+          />
+          <ImageLink
+            href="/curse-of-calculus"
+            src="/img/calculus.png"
+            alt="Calculus"
+            className={style.image}
+          />
         </main>
       </section>
     </>
