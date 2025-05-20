@@ -91,6 +91,13 @@ export default function MadameMisfortuneGame() {
               />
             );
           })}
+        {step === "reveal" && (
+          <div className={styles.options}>
+            <a href="/madame-misfortune">Play again</a>
+            &nbsp; or &nbsp;
+            <a href="/">Go back to start</a>
+          </div>
+        )}
       </main>
     </section>
   );
