@@ -14,7 +14,7 @@ export default function MadameMisfortuneGame() {
   const [deck] = useState<TarotCard[]>(() =>
     [...deckData].sort(() => Math.random() - 0.5)
   );
-  const [step, setStep] = useState<"choose" | "reveal">("choose");
+  const [step, setStep] = useState<"intro" | "choose" | "reveal">("intro");
 
   const handleSelect = (id: number): void => {
     if (selected.length >= 3 || selected.includes(id)) return;
@@ -30,6 +30,13 @@ export default function MadameMisfortuneGame() {
     <section className={styles.body}>
       <header className={styles.header}>
         <h1 style={parisienne.style}>Madame Misfortune</h1>
+        {step === "intro" && (
+          <p>
+            {`No refunds here, no way to flee,`}
+            <br />
+            {`let's see what misery chose thee!`}
+          </p>
+        )}
         {step === "choose" && (
           <p>
             {`Prepare to learn what you'd rather not know,`}
@@ -46,7 +53,21 @@ export default function MadameMisfortuneGame() {
         )}
       </header>
 
-      <main className={styles.cards}>
+      <main
+        key={step}
+        className={`${styles.cards} 
+          ${step === "choose" ? styles.cardsFadeChoose : ""} 
+          ${step === "reveal" ? styles.cardsFadeReveal : ""}
+        `}
+      >
+        {step === "intro" && (
+          <button
+            className={styles.playButton}
+            onClick={() => setStep("choose")}
+          >
+            Play {/* insert enter module here instead? */}
+          </button>
+        )}
         {step === "choose" &&
           deck.map((card) => (
             <Card
@@ -57,7 +78,6 @@ export default function MadameMisfortuneGame() {
               onClick={handleSelect}
             />
           ))}
-
         {step === "reveal" &&
           selected.map((id) => {
             const card = deck.find((c) => c.id === id);

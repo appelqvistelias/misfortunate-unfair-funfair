@@ -48,30 +48,30 @@
 .card.revealed p {
   opacity: 0;
   animation: textReveal 0.2s forwards;
-  animation-delay: 0.8s; /* visas efter flip */
+  animation-delay: 0.8s;
 }
 
 .card.revealed:nth-of-type(1) {
-  animation-delay: 0.5s;
-}
-.card.revealed:nth-of-type(2) {
   animation-delay: 1s;
 }
-.card.revealed:nth-of-type(3) {
+.card.revealed:nth-of-type(2) {
   animation-delay: 1.5s;
+}
+.card.revealed:nth-of-type(3) {
+  animation-delay: 2s;
 }
 
 .card.revealed:nth-of-type(1) h2,
 .card.revealed:nth-of-type(1) p {
-  animation-delay: 0.8s;
+  animation-delay: 1.3s;
 }
 .card.revealed:nth-of-type(2) h2,
 .card.revealed:nth-of-type(2) p {
-  animation-delay: 1.3s;
+  animation-delay: 1.8s;
 }
 .card.revealed:nth-of-type(3) h2,
 .card.revealed:nth-of-type(3) p {
-  animation-delay: 1.8s;
+  animation-delay: 2.3s;
 }
 
 @keyframes flip {
