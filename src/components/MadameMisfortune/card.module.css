@@ -19,7 +19,6 @@
   font-size: 3rem;
 }
 .card p {
-  color: black; /* to counter out the white default in madame.module.css */
   font-size: 2rem;
 }
 

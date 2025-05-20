@@ -32,14 +32,16 @@ export default function MadameMisfortuneGame() {
         <h1 style={parisienne.style}>Madame Misfortune</h1>
         {step === "choose" && (
           <p>
-            {`Prepare to learn what you'd rather not know, <br /> begin by
-            picking three cards below...`}
+            {`Prepare to learn what you'd rather not know,`}
+            <br />
+            {`begin by picking three cards below...`}
           </p>
         )}
         {step === "reveal" && (
           <p>
-            {`Three signs of doom from hand you have played, <br /> discover what
-            wicked fate has been laid...`}
+            {`Three signs of doom from hand you've played,`}
+            <br />
+            {`discover what wicked fate has been laid...`}
           </p>
         )}
       </header>
