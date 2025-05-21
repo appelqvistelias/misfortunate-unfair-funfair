@@ -19,7 +19,7 @@ export default function CreditPurchase({ onSuccess, token }: Props) {
 
     const credits = euros * 5;
 
-    const response = await collectPaymentFromPlayer(token);
+    const response = await collectPaymentFromPlayer(token, euros);
     if (response.success) {
       onSuccess(credits);
     } else {
