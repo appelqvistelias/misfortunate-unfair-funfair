@@ -79,19 +79,29 @@ export default function CurseOfCalculus() {
   // Winning
   useEffect(() => {
     const allMatched = matchedPairs.length === CARD_PAIRS;
-    if (allMatched && credits !== null && token) {
-      const refundCredits = Math.floor(credits / 5);
+    if (allMatched && credits !== null && initialCredits !== null && token) {
+      const unusedCredits = credits;
+      const refundCredits = Math.floor(unusedCredits / 5); // Gives back 1 eur per every 5 credits
       const refundAmount = refundCredits * 1.0;
 
       if (refundAmount > 0) {
         sendCashRewardToPlayer(token, refundAmount);
       }
+
       sendStampToPlayer(token);
     }
-  }, [matchedPairs, credits, token]);
+  }, [matchedPairs, credits, initialCredits, token]);
 
   if (credits === null) {
-    return <CreditPurchase onSuccess={setCredits} token={token} />;
+    return (
+      <CreditPurchase
+        token={token}
+        onSuccess={(credits) => {
+          setCredits(credits);
+          setInitialCredits(credits);
+        }}
+      />
+    );
   }
 
   if (credits <= 0) {
