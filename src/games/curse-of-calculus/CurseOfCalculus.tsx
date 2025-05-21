@@ -6,6 +6,11 @@ import GameBoard from "@/components/curse-of-calculus/GameBoard/GameBoard";
 import VictoryMessage from "@/components/curse-of-calculus/VictoryMessage/VictoryMessage";
 import { generateCards } from "@/games/curse-of-calculus/utils";
 import { CurseCard, CursePair } from "@/games/curse-of-calculus/types";
+import CreditPurchase from "@/components/curse-of-calculus/CreditPurchase/CreditPurchase";
+import {
+  sendCashRewardToPlayer,
+  sendStampToPlayer,
+} from "@/utils/transactions/moneyTransactions";
 
 const CARD_PAIRS = 9;
 
