@@ -15,7 +15,7 @@ async function postTransaction(
 
   if (!res.ok) {
     const data = await res.json().catch(() => ({}));
-    throw new Error(data.message || "Transaktionen misslyckades");
+    throw new Error(data.message || "Something went wrong. Payment failed :(");
   }
 }
 
@@ -23,5 +23,12 @@ export async function buyTicket(jwt: string): Promise<void> {
   return postTransaction(jwt, {
     amusement_id: GAME_CONFIG.AMUSEMENT_ID,
     stake_amount: GAME_CONFIG.COST,
+  });
+}
+
+export async function awardStamp(jwt: string): Promise<void> {
+  return postTransaction(jwt, {
+    amusement_id: GAME_CONFIG.AMUSEMENT_ID,
+    stamp_id: GAME_CONFIG.STAMP_ID,
   });
 }

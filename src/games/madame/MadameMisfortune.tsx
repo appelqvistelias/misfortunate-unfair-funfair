@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Card from "../../components/MadameMisfortune/Card";
 import { TarotCard } from "../../components/MadameMisfortune/types";
 import { Parisienne } from "next/font/google";
 import deckData from "@/data/tarotCards.json";
 import styles from "@/app/madame-misfortune/madame.module.css";
 import JwtListener from "@/components/JwtListener";
-import { buyTicket } from "@/lib/transactions"; // Betalfunktion
+import { buyTicket, awardStamp } from "@/lib/transactions";
 
 const parisienne = Parisienne({ weight: "400", subsets: ["latin-ext"] });
 
@@ -27,18 +27,17 @@ export default function MadameMisfortuneGame() {
     const jwtToken = localStorage.getItem("jwt");
 
     if (!jwtToken) {
-      setError("Du är inte inloggad. Öppna spelet via Tivoli.");
+      setError("User not authenticated. Please log in.");
       setLoading(false);
       return;
     }
 
     try {
-      await buyTicket(jwtToken); // Försök ta betalt
-      setStep("choose"); // Starta spelet
+      await buyTicket(jwtToken);
+      setStep("choose");
     } catch (err) {
-      const message =
-        err instanceof Error ? err.message : "Något gick fel vid betalning.";
-      setError(message);
+      setError("Payment failed.");
+      console.error(err);
     } finally {
       setLoading(false);
     }
@@ -53,6 +52,25 @@ export default function MadameMisfortuneGame() {
       setTimeout(() => setStep("reveal"), 1000);
     }
   };
+
+  // Award stamp when game ends
+  useEffect(() => {
+    const giveStamp = async () => {
+      const jwtToken = localStorage.getItem("jwt");
+      if (!jwtToken) return;
+
+      try {
+        await awardStamp(jwtToken);
+        console.log("Stamp awarded!");
+      } catch (err) {
+        console.error("Failed to award stamp:", err);
+      }
+    };
+
+    if (step === "reveal") {
+      giveStamp();
+    }
+  }, [step]);
 
   return (
     <>
@@ -96,9 +114,9 @@ export default function MadameMisfortuneGame() {
             <button
               onClick={handlePlayClick}
               disabled={loading}
-              className="bg-purple-700 text-white px-6 py-3 rounded-lg hover:bg-purple-800 transition"
+              className="bg-purple-700 hover:bg-purple-800 text-white py-2 px-4 rounded-xl text-xl"
             >
-              {loading ? "Bearbetar..." : "Spela"}
+              {loading ? "Processing..." : "Play"}
             </button>
           )}
 
@@ -129,9 +147,9 @@ export default function MadameMisfortuneGame() {
 
           {step === "reveal" && (
             <div className={styles.options}>
-              <a href="/madame-misfortune">Spela igen</a>
-              &nbsp; eller &nbsp;
-              <a href="/">Tillbaka till start</a>
+              <a href="/madame-misfortune">Play again</a>
+              &nbsp; or &nbsp;
+              <a href="/">Go back to start</a>
             </div>
           )}
         </main>
