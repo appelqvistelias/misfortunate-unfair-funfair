@@ -21,7 +21,7 @@ export async function createTransaction(
 
     console.log("Creating transaction with payload:", payload);
 
-    const response = await fetch("/api/transactions", {
+    const response = await fetch("https://yrgobanken.vip/api/transactions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
