@@ -15,6 +15,8 @@ import {
 const CARD_PAIRS = 9;
 
 export default function CurseOfCalculus() {
+  const [token, setToken] = useState<string | null>(null);
+  const [credits, setCredits] = useState<number | null>(null);
   const [cards, setCards] = useState<CurseCard[]>([]);
   const [selectedCards, setSelectedCards] = useState<CurseCard[]>([]);
   const [matchedPairs, setMatchedPairs] = useState<number[]>([]);
@@ -26,13 +28,20 @@ export default function CurseOfCalculus() {
   }, []);
 
   const handleCardClick = (card: CurseCard) => {
-    if (card.isMatched || card.isRevealed || selectedCards.length === 2) return;
+    if (
+      card.isMatched ||
+      card.isRevealed ||
+      selectedCards.length === 2 ||
+      !credits
+    )
+      return;
 
     const revealedCard = { ...card, isRevealed: true };
     const updatedCards = cards.map((c) =>
       c.id === card.id ? revealedCard : c
     );
     setCards(updatedCards);
+
     const newSelected = [...selectedCards, revealedCard];
     setSelectedCards(newSelected);
 
@@ -50,6 +59,9 @@ export default function CurseOfCalculus() {
         }, 500);
       } else {
         setTimeout(() => {
+          // WRONG: Remove one credit
+          setCredits((prev) => (prev !== null ? prev - 1 : null));
+
           setCards((prev) =>
             prev.map((c) =>
               c.id === first.id || c.id === second.id
@@ -63,8 +75,31 @@ export default function CurseOfCalculus() {
     }
   };
 
+  // Winning
+  useEffect(() => {
+    const allMatched = matchedPairs.length === CARD_PAIRS;
+    if (allMatched && credits !== null && token) {
+      const refundCredits = Math.floor(credits / 5);
+      const refundAmount = refundCredits * 1.0;
+
+      if (refundAmount > 0) {
+        sendCashRewardToPlayer(token, refundAmount);
+      }
+      sendStampToPlayer(token);
+    }
+  }, [matchedPairs, credits, token]);
+
+  if (credits === null) {
+    return <CreditPurchase onSuccess={setCredits} token={token} />;
+  }
+
+  if (credits <= 0) {
+    return <div>😢 You are out of credits. Try again!</div>;
+  }
+
   return (
     <div>
+      <p>Remaining Credits: {credits}</p>
       <GameBoard cards={cards} onCardClick={handleCardClick} />
       {matchedPairs.length === CARD_PAIRS && <VictoryMessage />}
     </div>
