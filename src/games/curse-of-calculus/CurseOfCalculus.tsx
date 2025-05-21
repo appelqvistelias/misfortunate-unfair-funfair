@@ -16,6 +16,7 @@ const CARD_PAIRS = 9;
 
 export default function CurseOfCalculus() {
   const [token, setToken] = useState<string | null>(null);
+  const [initialCredits, setInitialCredits] = useState<number | null>(null);
   const [credits, setCredits] = useState<number | null>(null);
   const [cards, setCards] = useState<CurseCard[]>([]);
   const [selectedCards, setSelectedCards] = useState<CurseCard[]>([]);
