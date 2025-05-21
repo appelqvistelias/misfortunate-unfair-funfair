@@ -10,12 +10,13 @@ import { GAME_CONFIG } from "./config";
  */
 
 export async function collectPaymentFromPlayer(
-  token: string | null
+  token: string | null,
+  euros: number
 ): Promise<TransactionResponse> {
   return createTransaction(
     {
       amusement_id: GAME_CONFIG.AMUSEMENT_ID,
-      stake_amount: GAME_CONFIG.COST,
+      stake_amount: euros,
     },
     token
   );
