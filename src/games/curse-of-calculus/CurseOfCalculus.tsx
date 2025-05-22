@@ -6,18 +6,10 @@ import GameBoard from "@/components/curse-of-calculus/GameBoard/GameBoard";
 import VictoryMessage from "@/components/curse-of-calculus/VictoryMessage/VictoryMessage";
 import { generateCards } from "@/games/curse-of-calculus/utils";
 import { CurseCard, CursePair } from "@/games/curse-of-calculus/types";
-import CreditPurchase from "@/components/curse-of-calculus/CreditPurchase/CreditPurchase";
-import {
-  sendCashRewardToPlayer,
-  sendStampToPlayer,
-} from "@/utils/transactions/moneyTransactions";
 
 const CARD_PAIRS = 9;
 
 export default function CurseOfCalculus() {
-  const [token, setToken] = useState<string | null>(null);
-  const [initialCredits, setInitialCredits] = useState<number | null>(null);
-  const [credits, setCredits] = useState<number | null>(null);
   const [cards, setCards] = useState<CurseCard[]>([]);
   const [selectedCards, setSelectedCards] = useState<CurseCard[]>([]);
   const [matchedPairs, setMatchedPairs] = useState<number[]>([]);
@@ -29,20 +21,13 @@ export default function CurseOfCalculus() {
   }, []);
 
   const handleCardClick = (card: CurseCard) => {
-    if (
-      card.isMatched ||
-      card.isRevealed ||
-      selectedCards.length === 2 ||
-      !credits
-    )
-      return;
+    if (card.isMatched || card.isRevealed || selectedCards.length === 2) return;
 
     const revealedCard = { ...card, isRevealed: true };
     const updatedCards = cards.map((c) =>
       c.id === card.id ? revealedCard : c
     );
     setCards(updatedCards);
-
     const newSelected = [...selectedCards, revealedCard];
     setSelectedCards(newSelected);
 
@@ -60,9 +45,6 @@ export default function CurseOfCalculus() {
         }, 500);
       } else {
         setTimeout(() => {
-          // WRONG: Remove one credit
-          setCredits((prev) => (prev !== null ? prev - 1 : null));
-
           setCards((prev) =>
             prev.map((c) =>
               c.id === first.id || c.id === second.id
@@ -76,41 +58,8 @@ export default function CurseOfCalculus() {
     }
   };
 
-  // Winning
-  useEffect(() => {
-    const allMatched = matchedPairs.length === CARD_PAIRS;
-    if (allMatched && credits !== null && initialCredits !== null && token) {
-      const unusedCredits = credits;
-      const refundCredits = Math.floor(unusedCredits / 5); // Gives back 1 eur per every 5 credits
-      const refundAmount = refundCredits * 1.0;
-
-      if (refundAmount > 0) {
-        sendCashRewardToPlayer(token, refundAmount);
-      }
-
-      sendStampToPlayer(token);
-    }
-  }, [matchedPairs, credits, initialCredits, token]);
-
-  if (credits === null) {
-    return (
-      <CreditPurchase
-        token={token}
-        onSuccess={(credits) => {
-          setCredits(credits);
-          setInitialCredits(credits);
-        }}
-      />
-    );
-  }
-
-  if (credits <= 0) {
-    return <div>😢 You are out of credits. Try again!</div>;
-  }
-
   return (
     <div>
-      <p>Remaining Credits: {credits}</p>
       <GameBoard cards={cards} onCardClick={handleCardClick} />
       {matchedPairs.length === CARD_PAIRS && <VictoryMessage />}
     </div>
