@@ -8,6 +8,7 @@ import deckData from "@/data/tarotCards.json";
 import styles from "@/app/madame-misfortune/madame.module.css";
 import JwtListener from "@/components/JwtListener";
 import { buyTicket, awardStamp } from "@/lib/transactions";
+import Link from "next/link";
 
 const parisienne = Parisienne({ weight: "400", subsets: ["latin-ext"] });
 
@@ -147,9 +148,9 @@ export default function MadameMisfortuneGame() {
 
           {step === "reveal" && (
             <div className={styles.options}>
-              <a href="/madame-misfortune">Play again</a>
+              <Link href="/madame-misfortune">Play again</Link>
               &nbsp; or &nbsp;
-              <a href="/">Go back to start</a>
+              <Link href="/">Go back to start</Link>
             </div>
           )}
         </main>

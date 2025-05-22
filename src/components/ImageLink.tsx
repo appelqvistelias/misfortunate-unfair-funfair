@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import styles from "./ImageLink.module.css";
 
 type ImageLinkProps = {
   href: string;
