@@ -8,7 +8,8 @@ import deckData from "@/data/tarotCards.json";
 import styles from "@/app/madame-misfortune/madame.module.css";
 import JwtListener from "@/components/JwtListener/JwtListener";
 import { buyTicket, awardStamp } from "@/lib/madame-misfortune/transactions";
-import Link from "next/link";
+import Button from "@/components/Button/Button";
+import Image from "next/image";
 
 const parisienne = Parisienne({ weight: "400", subsets: ["latin-ext"] });
 
@@ -20,6 +21,7 @@ export default function MadameMisfortuneGame() {
   const [step, setStep] = useState<"intro" | "choose" | "reveal">("intro");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showReplay, setShowReplay] = useState(false);
 
   const handlePlayClick = async () => {
     setLoading(true);
@@ -54,7 +56,42 @@ export default function MadameMisfortuneGame() {
     }
   };
 
-  // Award stamp when game ends
+  const handleReplayClick = async () => {
+    setLoading(true);
+    setError(null);
+
+    const jwtToken = localStorage.getItem("jwt");
+
+    if (!jwtToken) {
+      setError("User not authenticated. Please log in.");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      await buyTicket(jwtToken);
+      setSelected([]);
+      setStep("choose");
+    } catch (err) {
+      setError("Payment failed.");
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (step === "reveal") {
+      const timeout = setTimeout(() => {
+        setShowReplay(true);
+      }, 3000);
+
+      return () => clearTimeout(timeout);
+    } else {
+      setShowReplay(false);
+    }
+  }, [step]);
+
   useEffect(() => {
     const giveStamp = async () => {
       const jwtToken = localStorage.getItem("jwt");
@@ -81,11 +118,22 @@ export default function MadameMisfortuneGame() {
         <header className={styles.header}>
           <h1 style={parisienne.style}>Madame Misfortune</h1>
           {step === "intro" && (
-            <p>
-              {`No refunds here, no way to flee,`}
+            <>
+              <Image
+                src="/img/madame.png"
+                width="500"
+                height="500"
+                alt="A red-haired fortune teller dressed in an emerald green cloak sits at a dark wooden table. On the table in front of her there are tarot cards, burning candles and a crystal ball. Her red eyes glow and she has an evil smirk on her face."
+                className="image"
+              ></Image>
               <br />
-              {`let's see what misery chose thee!`}
-            </p>
+              <br />
+              <p>
+                {`No refunds here, no way to flee,`}
+                <br />
+                {`let's see what misery chose thee!`}
+              </p>
+            </>
           )}
           {step === "choose" && (
             <p>
@@ -112,15 +160,13 @@ export default function MadameMisfortuneGame() {
           `}
         >
           {step === "intro" && (
-            <button
+            <Button
+              text={loading ? "Processing..." : "Play"}
               onClick={handlePlayClick}
               disabled={loading}
-              className="bg-purple-700 hover:bg-purple-800 text-white py-2 px-4 rounded-xl text-xl"
-            >
-              {loading ? "Processing..." : "Play"}
-            </button>
+              style={{ background: "#530068" }}
+            />
           )}
-
           {step === "choose" &&
             deck.map((card) => (
               <Card
@@ -131,7 +177,6 @@ export default function MadameMisfortuneGame() {
                 onClick={handleSelect}
               />
             ))}
-
           {step === "reveal" &&
             selected.map((id) => {
               const card = deck.find((c) => c.id === id);
@@ -145,12 +190,14 @@ export default function MadameMisfortuneGame() {
                 />
               );
             })}
-
-          {step === "reveal" && (
-            <div className={styles.options}>
-              <Link href="/madame-misfortune">Play again</Link>
-              &nbsp; or &nbsp;
-              <Link href="/">Go back to start</Link>
+          {step === "reveal" && showReplay && (
+            <div className={`${styles.options}  ${styles.fadeIn}`}>
+              <Button
+                text={loading ? "Processing..." : "Play again"}
+                onClick={handleReplayClick}
+                disabled={loading}
+                style={{ background: "#530068" }}
+              />
             </div>
           )}
         </main>
