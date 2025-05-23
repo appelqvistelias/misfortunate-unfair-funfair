@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import styles from "@/games/curse-of-calculus/CurseOfCalculus.module.css";
 import mathPairs from "@/data/mathPairs.json";
 import GameBoard from "@/components/curse-of-calculus/GameBoard/GameBoard";
 import VictoryMessage from "@/components/curse-of-calculus/VictoryMessage/VictoryMessage";
@@ -121,15 +122,15 @@ export default function CurseOfCalculus() {
       <JwtListener />
 
       {step === "intro" && (
-        <div style={{ textAlign: "center", marginTop: "2rem" }}>
+        <div className={styles.introWrapper}>
           <button
             onClick={handlePlayClick}
             disabled={loading}
-            className="bg-purple-700 hover:bg-purple-800 text-white py-2 px-4 rounded-xl text-xl"
+            className={styles.playButton}
           >
             {loading ? "Processing..." : "Buy Ticket to Play"}
           </button>
-          {error && <p style={{ color: "red", marginTop: "1rem" }}>{error}</p>}
+          {error && <p className={styles.errorMessage}>{error}</p>}
         </div>
       )}
 
@@ -140,10 +141,10 @@ export default function CurseOfCalculus() {
       {step === "victory" && (
         <>
           <VictoryMessage />
-          <div style={{ textAlign: "center", marginTop: "1rem" }}>
+          <div className={styles.victoryWrapper}>
             <button
               onClick={() => setStep("intro")}
-              className="underline text-blue-600"
+              className={styles.victoryButton}
             >
               Play again
             </button>
