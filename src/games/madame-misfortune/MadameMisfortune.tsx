@@ -139,7 +139,7 @@ export default function MadameMisfortuneGame() {
               text={loading ? "Processing..." : "Play"}
               onClick={handlePlayClick}
               disabled={loading}
-              style={{ marginTop: "20px" }}
+              style={{ background: "red" }}
             />
           )}
           {step === "choose" &&
