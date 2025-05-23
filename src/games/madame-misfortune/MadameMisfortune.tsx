@@ -123,7 +123,7 @@ export default function MadameMisfortuneGame() {
                 src="/img/madame.png"
                 width="500"
                 height="500"
-                alt="A red-haired fortune teller dressed in a emerald green cloak sits at a dark wooden table. On the table in front of her there are tarot cards, burning candles and a crystal ball. Her red eyes glow and she has an evil smirk on her face."
+                alt="A red-haired fortune teller dressed in an emerald green cloak sits at a dark wooden table. On the table in front of her there are tarot cards, burning candles and a crystal ball. Her red eyes glow and she has an evil smirk on her face."
                 className="image"
               ></Image>
               <br />
