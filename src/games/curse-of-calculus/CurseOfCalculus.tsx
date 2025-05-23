@@ -7,7 +7,7 @@ import GameBoard from "@/components/curse-of-calculus/GameBoard/GameBoard";
 import VictoryMessage from "@/components/curse-of-calculus/VictoryMessage/VictoryMessage";
 import { generateCards } from "@/games/curse-of-calculus/utils";
 import { CurseCard, CursePair } from "@/games/curse-of-calculus/types";
-import JwtListener from "@/components/JwtListener";
+import JwtListener from "@/components/JwtListener/JwtListener";
 import { buyTicket, awardStamp } from "@/lib/curse-of-calculus/transactions";
 
 const CARD_PAIRS = 9;
