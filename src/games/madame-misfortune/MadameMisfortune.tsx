@@ -8,7 +8,6 @@ import deckData from "@/data/tarotCards.json";
 import styles from "@/app/madame-misfortune/madame.module.css";
 import JwtListener from "@/components/JwtListener/JwtListener";
 import { buyTicket, awardStamp } from "@/lib/madame-misfortune/transactions";
-import Link from "next/link";
 import Button from "@/components/Button/Button";
 
 const parisienne = Parisienne({ weight: "400", subsets: ["latin-ext"] });
@@ -55,7 +54,30 @@ export default function MadameMisfortuneGame() {
     }
   };
 
-  // Award stamp when game ends
+  const handleReplayClick = async () => {
+    setLoading(true);
+    setError(null);
+
+    const jwtToken = localStorage.getItem("jwt");
+
+    if (!jwtToken) {
+      setError("User not authenticated. Please log in.");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      await buyTicket(jwtToken);
+      setSelected([]);
+      setStep("choose");
+    } catch (err) {
+      setError("Payment failed.");
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     const giveStamp = async () => {
       const jwtToken = localStorage.getItem("jwt");
@@ -145,9 +167,11 @@ export default function MadameMisfortuneGame() {
             })}
           {step === "reveal" && (
             <div className={styles.options}>
-              <Link href="/madame-misfortune">Play again</Link>
-              &nbsp; or &nbsp;
-              <Link href="/">Go back to start</Link>
+              <Button
+                text={loading ? "Processing..." : "Try again"}
+                onClick={handleReplayClick}
+                disabled={loading}
+              />
             </div>
           )}
         </main>
