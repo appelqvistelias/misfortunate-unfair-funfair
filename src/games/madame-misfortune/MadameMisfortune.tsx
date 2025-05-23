@@ -9,6 +9,7 @@ import styles from "@/app/madame-misfortune/madame.module.css";
 import JwtListener from "@/components/JwtListener/JwtListener";
 import { buyTicket, awardStamp } from "@/lib/madame-misfortune/transactions";
 import Link from "next/link";
+import Button from "@/components/Button/Button";
 
 const parisienne = Parisienne({ weight: "400", subsets: ["latin-ext"] });
 
@@ -112,15 +113,13 @@ export default function MadameMisfortuneGame() {
           `}
         >
           {step === "intro" && (
-            <button
+            <Button
+              text={loading ? "Processing..." : "Play"}
               onClick={handlePlayClick}
               disabled={loading}
-              className="bg-purple-700 hover:bg-purple-800 text-white py-2 px-4 rounded-xl text-xl"
-            >
-              {loading ? "Processing..." : "Play"}
-            </button>
+              style={{ marginTop: "20px" }}
+            />
           )}
-
           {step === "choose" &&
             deck.map((card) => (
               <Card
@@ -131,7 +130,6 @@ export default function MadameMisfortuneGame() {
                 onClick={handleSelect}
               />
             ))}
-
           {step === "reveal" &&
             selected.map((id) => {
               const card = deck.find((c) => c.id === id);
@@ -145,7 +143,6 @@ export default function MadameMisfortuneGame() {
                 />
               );
             })}
-
           {step === "reveal" && (
             <div className={styles.options}>
               <Link href="/madame-misfortune">Play again</Link>
