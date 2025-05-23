@@ -6,8 +6,8 @@ import { TarotCard } from "../../components/MadameMisfortune/types";
 import { Parisienne } from "next/font/google";
 import deckData from "@/data/tarotCards.json";
 import styles from "@/app/madame-misfortune/madame.module.css";
-import JwtListener from "@/components/JwtListener";
-import { buyTicket, awardStamp } from "@/lib/transactions";
+import JwtListener from "@/components/JwtListener/JwtListener";
+import { buyTicket, awardStamp } from "@/lib/madame-misfortune/transactions";
 import Link from "next/link";
 
 const parisienne = Parisienne({ weight: "400", subsets: ["latin-ext"] });

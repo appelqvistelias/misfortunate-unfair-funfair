@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar/Navbar";
 import style from "./page.module.css";
-import ImageLink from "@/components/ImageLink";
+import ImageLink from "@/components/ImageLink/ImageLink";
 
 export default function Home() {
   return (
