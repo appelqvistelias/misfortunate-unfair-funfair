@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import styles from "@/games/curse-of-calculus/CurseOfCalculus.module.css";
 import mathPairs from "@/data/mathPairs.json";
 import GameBoard from "@/components/curse-of-calculus/GameBoard/GameBoard";
+import PopUp from "@/components/PopUp/PopUp";
 import VictoryMessage from "@/components/curse-of-calculus/VictoryMessage/VictoryMessage";
 import { generateCards } from "@/games/curse-of-calculus/utils";
 import { CurseCard, CursePair } from "@/games/curse-of-calculus/types";
@@ -15,6 +16,7 @@ const CARD_PAIRS = 9;
 export default function CurseOfCalculus() {
   const [step, setStep] = useState<"intro" | "playing" | "victory">("intro");
   const [loading, setLoading] = useState(false);
+  const [showVictory, setShowVictory] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const [cards, setCards] = useState<CurseCard[]>([]);
@@ -99,6 +101,7 @@ export default function CurseOfCalculus() {
           setSelectedCards([]);
 
           if (matchedPairs.length + 1 === CARD_PAIRS) {
+            setShowVictory(true);
             setStep("victory");
           }
         }, 500);
@@ -138,19 +141,17 @@ export default function CurseOfCalculus() {
         <GameBoard cards={cards} onCardClick={handleCardClick} />
       )}
 
-      {step === "victory" && (
-        <>
-          <VictoryMessage />
-          <div className={styles.victoryWrapper}>
-            <button
-              onClick={() => setStep("intro")}
-              className={styles.victoryButton}
-            >
-              Play again
-            </button>
-          </div>
-        </>
-      )}
+      <PopUp
+        isOpen={showVictory}
+        onClose={() => {
+          setShowVictory(false);
+          setStep("intro");
+        }}
+        title="Congratulations!"
+      >
+        <p>You did pay attention during math class!</p>
+        <p>Take this Platinum Pallas Cat stamp!</p>
+      </PopUp>
     </div>
   );
 }
