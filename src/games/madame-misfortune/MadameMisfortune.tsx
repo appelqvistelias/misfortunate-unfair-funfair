@@ -9,6 +9,7 @@ import styles from "@/app/madame-misfortune/madame.module.css";
 import JwtListener from "@/components/JwtListener/JwtListener";
 import { buyTicket, awardStamp } from "@/lib/madame-misfortune/transactions";
 import Button from "@/components/Button/Button";
+import Image from "next/image";
 
 const parisienne = Parisienne({ weight: "400", subsets: ["latin-ext"] });
 
@@ -20,6 +21,7 @@ export default function MadameMisfortuneGame() {
   const [step, setStep] = useState<"intro" | "choose" | "reveal">("intro");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showReplay, setShowReplay] = useState(false);
 
   const handlePlayClick = async () => {
     setLoading(true);
@@ -79,6 +81,18 @@ export default function MadameMisfortuneGame() {
   };
 
   useEffect(() => {
+    if (step === "reveal") {
+      const timeout = setTimeout(() => {
+        setShowReplay(true);
+      }, 3000);
+
+      return () => clearTimeout(timeout);
+    } else {
+      setShowReplay(false);
+    }
+  }, [step]);
+
+  useEffect(() => {
     const giveStamp = async () => {
       const jwtToken = localStorage.getItem("jwt");
       if (!jwtToken) return;
@@ -104,11 +118,22 @@ export default function MadameMisfortuneGame() {
         <header className={styles.header}>
           <h1 style={parisienne.style}>Madame Misfortune</h1>
           {step === "intro" && (
-            <p>
-              {`No refunds here, no way to flee,`}
+            <>
+              <Image
+                src="/img/madame.png"
+                width="500"
+                height="500"
+                alt="A red-haired fortune teller dressed in a emerald green cloak sits at a dark wooden table. On the table in front of her there are tarot cards, burning candles and a crystal ball. Her red eyes glow and she has an evil smirk on her face."
+                className="image"
+              ></Image>
               <br />
-              {`let's see what misery chose thee!`}
-            </p>
+              <br />
+              <p>
+                {`No refunds here, no way to flee,`}
+                <br />
+                {`let's see what misery chose thee!`}
+              </p>
+            </>
           )}
           {step === "choose" && (
             <p>
@@ -139,7 +164,7 @@ export default function MadameMisfortuneGame() {
               text={loading ? "Processing..." : "Play"}
               onClick={handlePlayClick}
               disabled={loading}
-              style={{ background: "red" }}
+              style={{ background: "#530068" }}
             />
           )}
           {step === "choose" &&
@@ -165,12 +190,13 @@ export default function MadameMisfortuneGame() {
                 />
               );
             })}
-          {step === "reveal" && (
-            <div className={styles.options}>
+          {step === "reveal" && showReplay && (
+            <div className={`${styles.options}  ${styles.fadeIn}`}>
               <Button
-                text={loading ? "Processing..." : "Try again"}
+                text={loading ? "Processing..." : "Play again"}
                 onClick={handleReplayClick}
                 disabled={loading}
+                style={{ background: "#530068" }}
               />
             </div>
           )}
