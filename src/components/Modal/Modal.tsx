@@ -13,6 +13,7 @@ type ModalProps = {
   children: React.ReactNode;
   backgroundColor?: string;
   borderColor?: string;
+  textColor?: string;
 };
 
 export default function Modal({
@@ -22,6 +23,7 @@ export default function Modal({
   children,
   backgroundColor = "#780000",
   borderColor = "#bc2222",
+  textColor = "white",
 }: ModalProps) {
   if (!isOpen) return null;
 
@@ -35,6 +37,7 @@ export default function Modal({
           borderColor,
           borderStyle: "solid",
           borderWidth: "1px",
+          color: textColor,
         }}
       >
         <button
