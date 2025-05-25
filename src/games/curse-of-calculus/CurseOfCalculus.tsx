@@ -10,6 +10,7 @@ import mathPairs from "@/data/mathPairs.json";
 import { generateCards } from "@/games/curse-of-calculus/utils";
 import { CurseCard, CursePair } from "@/games/curse-of-calculus/types";
 import { buyTicket, awardStamp } from "@/lib/curse-of-calculus/transactions";
+import { GAME_CONFIG } from "@/config/curse-of-calculus/game";
 
 const CARD_PAIRS = 9;
 
@@ -22,6 +23,7 @@ export default function CurseOfCalculus() {
   const [lives, setLives] = useState<number>(9);
   const [showGameOver, setShowGameOver] = useState(false);
   const [showVictory, setShowVictory] = useState(false);
+  const [showRules, setShowRules] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showError, setShowError] = useState(false);
 
@@ -147,7 +149,16 @@ export default function CurseOfCalculus() {
           <Button
             onClick={handlePlayClick}
             disabled={loading}
-            text={loading ? "Processing..." : "Buy Ticket to Play"}
+            text={
+              loading
+                ? "Processing..."
+                : `Test your skills for €${GAME_CONFIG.COST}`
+            }
+            style={{ backgroundColor: "#780000", borderColor: "#bc2222" }}
+          />
+          <Button
+            onClick={() => setShowRules(true)}
+            text="Rules"
             style={{ backgroundColor: "#780000", borderColor: "#bc2222" }}
           />
         </div>
@@ -159,6 +170,26 @@ export default function CurseOfCalculus() {
           <GameBoard cards={cards} onCardClick={handleCardClick} />
         </>
       )}
+
+      {/* Rules Modal */}
+      <Modal
+        isOpen={showRules}
+        onClose={() => setShowRules(false)}
+        title="Game Rules"
+      >
+        <div className={styles.gameRules}>
+          <p>{`Dare to enter the arena for just €${GAME_CONFIG.COST}...`}</p>
+          <p>
+            Test your wits in a battle of memory—match arcane mathematical
+            expressions to survive.
+          </p>
+          <p>
+            Armed with 9 precious lives, you must endure the challenge to
+            uncover the legendary...
+          </p>
+          <p>✨ Platinum Pallas Cat ✨</p>
+        </div>
+      </Modal>
 
       {/* Victory Modal */}
       <Modal
