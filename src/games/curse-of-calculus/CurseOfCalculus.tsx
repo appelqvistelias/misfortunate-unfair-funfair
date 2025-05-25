@@ -21,6 +21,7 @@ export default function CurseOfCalculus() {
   const [cards, setCards] = useState<CurseCard[]>([]);
   const [selectedCards, setSelectedCards] = useState<CurseCard[]>([]);
   const [matchedPairs, setMatchedPairs] = useState<number[]>([]);
+  const [lives, setLives] = useState<number>(9);
 
   useEffect(() => {
     if (step === "playing") {
@@ -29,6 +30,7 @@ export default function CurseOfCalculus() {
       setCards(newCards);
       setSelectedCards([]);
       setMatchedPairs([]);
+      setLives(9);
       setError(null);
     }
   }, [step]);
@@ -114,6 +116,16 @@ export default function CurseOfCalculus() {
             )
           );
           setSelectedCards([]);
+
+          setLives((prevLives) => {
+            const newLives = prevLives - 1;
+            if (newLives <= 0) {
+              alert("Game Over! You ran out of lives.");
+              setStep("intro");
+              return 0;
+            }
+            return newLives;
+          });
         }, 1000);
       }
     }
@@ -137,7 +149,10 @@ export default function CurseOfCalculus() {
       )}
 
       {step === "playing" && (
-        <GameBoard cards={cards} onCardClick={handleCardClick} />
+        <>
+          <p>Lives: {lives}</p>
+          <GameBoard cards={cards} onCardClick={handleCardClick} />
+        </>
       )}
 
       <Modal
