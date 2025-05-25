@@ -22,6 +22,12 @@ export default function CurseOfCalculus() {
   const [showGameOver, setShowGameOver] = useState(false);
   const [showVictory, setShowVictory] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showError, setShowError] = useState(false);
+
+  const setErrorWithModal = (msg: string) => {
+    setError(msg);
+    setShowError(true);
+  };
 
   useEffect(() => {
     if (step === "playing") {
@@ -32,16 +38,18 @@ export default function CurseOfCalculus() {
       setMatchedPairs([]);
       setLives(9);
       setError(null);
+      setShowError(false);
     }
   }, [step]);
 
   const handlePlayClick = async () => {
     setLoading(true);
     setError(null);
+    setShowError(false);
 
     const jwtToken = localStorage.getItem("jwt");
     if (!jwtToken) {
-      setError("User not authenticated. Please log in.");
+      setErrorWithModal("User not authenticated. Please log in.");
       setLoading(false);
       return;
     }
@@ -50,7 +58,7 @@ export default function CurseOfCalculus() {
       await buyTicket(jwtToken);
       setStep("playing");
     } catch (err) {
-      setError("Payment failed.");
+      setErrorWithModal("Payment failed.");
       console.error(err);
     } finally {
       setLoading(false);
@@ -142,7 +150,6 @@ export default function CurseOfCalculus() {
           >
             {loading ? "Processing..." : "Buy Ticket to Play"}
           </button>
-          {error && <p className={styles.errorMessage}>{error}</p>}
         </div>
       )}
 
@@ -178,6 +185,18 @@ export default function CurseOfCalculus() {
       >
         <p>Sorry, you ran out of lives!</p>
         <p>Try again?</p>
+      </Modal>
+
+      {/* Error Modal */}
+      <Modal
+        isOpen={showError}
+        onClose={() => {
+          setShowError(false);
+          setError(null);
+        }}
+        title="⚠️ Error ⚠️"
+      >
+        <p>{error}</p>
       </Modal>
     </div>
   );
