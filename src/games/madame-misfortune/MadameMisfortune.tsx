@@ -7,6 +7,7 @@ import { Parisienne } from "next/font/google";
 import deckData from "@/data/tarotCards.json";
 import styles from "@/app/madame-misfortune/madame.module.css";
 import JwtListener from "@/components/JwtListener/JwtListener";
+import { GAME_CONFIG } from "@/config/madame-misfortune/game";
 import { buyTicket, awardStamp } from "@/lib/madame-misfortune/transactions";
 import Button from "@/components/Button/Button";
 import Image from "next/image";
@@ -121,8 +122,8 @@ export default function MadameMisfortuneGame() {
             <>
               <Image
                 src="/img/madame.png"
-                width="500"
-                height="500"
+                width="450"
+                height="450"
                 alt="A red-haired fortune teller dressed in an emerald green cloak sits at a dark wooden table. On the table in front of her there are tarot cards, burning candles and a crystal ball. Her red eyes glow and she has an evil smirk on her face."
                 className="image"
               ></Image>
@@ -161,7 +162,7 @@ export default function MadameMisfortuneGame() {
         >
           {step === "intro" && (
             <Button
-              text={loading ? "Processing..." : "Play"}
+              text={loading ? "Processing..." : `Enter €${GAME_CONFIG.COST}`}
               onClick={handlePlayClick}
               disabled={loading}
               style={{ background: "#530068" }}
