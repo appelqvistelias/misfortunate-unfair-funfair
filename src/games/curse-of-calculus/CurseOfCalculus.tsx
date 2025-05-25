@@ -4,8 +4,7 @@ import React, { useEffect, useState } from "react";
 import styles from "@/games/curse-of-calculus/CurseOfCalculus.module.css";
 import mathPairs from "@/data/mathPairs.json";
 import GameBoard from "@/components/curse-of-calculus/GameBoard/GameBoard";
-import PopUp from "@/components/PopUp/PopUp";
-import VictoryMessage from "@/components/curse-of-calculus/VictoryMessage/VictoryMessage";
+import Modal from "@/components/Modal/Modal";
 import { generateCards } from "@/games/curse-of-calculus/utils";
 import { CurseCard, CursePair } from "@/games/curse-of-calculus/types";
 import JwtListener from "@/components/JwtListener/JwtListener";
@@ -141,7 +140,7 @@ export default function CurseOfCalculus() {
         <GameBoard cards={cards} onCardClick={handleCardClick} />
       )}
 
-      <PopUp
+      <Modal
         isOpen={showVictory}
         onClose={() => {
           setShowVictory(false);
@@ -151,7 +150,7 @@ export default function CurseOfCalculus() {
       >
         <p>You did pay attention during math class!</p>
         <p>Take this Platinum Pallas Cat stamp!</p>
-      </PopUp>
+      </Modal>
     </div>
   );
 }

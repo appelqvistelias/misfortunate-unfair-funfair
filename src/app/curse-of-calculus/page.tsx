@@ -11,10 +11,10 @@ import styles from "@/app/curse-of-calculus/curse-of-calculus.module.css";
 import Navbar from "@/components/Navbar/Navbar";
 import CurseOfCalculus from "@/games/curse-of-calculus/CurseOfCalculus";
 import Button from "@/components/Button/Button";
-import PopUp from "@/components/PopUp/PopUp";
+import Modal from "@/components/Modal/Modal";
 
 export default function CurseOfCalculusPage() {
-  const [isPopUpOpen, setIsPopUpOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <>
@@ -37,17 +37,17 @@ export default function CurseOfCalculusPage() {
               <p className={`${josefin_sans.className} ${styles.paragraph}`}>
                 Welcome to why.
               </p>
-              <Button text="Rules" onClick={() => setIsPopUpOpen(true)} />
+              <Button text="Rules" onClick={() => setIsModalOpen(true)} />
 
-              <PopUp
-                isOpen={isPopUpOpen}
-                onClose={() => setIsPopUpOpen(false)}
+              <Modal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
                 title="Game Rules"
               >
                 <p className={josefin_sans.className}>
                   Here are the rules of the game...
                 </p>
-              </PopUp>
+              </Modal>
             </div>
           </div>
           <CurseOfCalculus />

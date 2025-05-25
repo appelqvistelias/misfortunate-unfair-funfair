@@ -1,12 +1,12 @@
 "use client";
 
 import React from "react";
-import styles from "./PopUp.module.css";
+import styles from "./Modal.module.css";
 import { Josefin_Sans } from "next/font/google";
 
 const josefin_sans = Josefin_Sans({ subsets: ["latin"], weight: "400" });
 
-type PopUpProps = {
+type ModalProps = {
   isOpen: boolean;
   onClose: () => void;
   title?: string;
@@ -18,7 +18,7 @@ export default function Modal({
   onClose,
   title,
   children,
-}: PopUpProps) {
+}: ModalProps) {
   if (!isOpen) return null;
 
   return (
