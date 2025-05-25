@@ -24,6 +24,7 @@ export default function CurseOfCalculus() {
   const [cards, setCards] = useState<CurseCard[]>([]);
   const [selectedCards, setSelectedCards] = useState<CurseCard[]>([]);
   const [matchedPairs, setMatchedPairs] = useState<number[]>([]);
+  const [waitingForClick, setWaitingForClick] = useState(false);
   const [lives, setLives] = useState<number>(9);
   const [showGameOver, setShowGameOver] = useState(false);
   const [showVictory, setShowVictory] = useState(false);
@@ -44,6 +45,7 @@ export default function CurseOfCalculus() {
       setSelectedCards([]);
       setMatchedPairs([]);
       setLives(9);
+      setWaitingForClick(false);
       setError(null);
       setShowError(false);
     }
@@ -90,9 +92,34 @@ export default function CurseOfCalculus() {
     }
   }, [step]);
 
+  const handleGlobalClick = () => {
+    if (!waitingForClick) return;
+
+    const [first, second] = selectedCards;
+    setCards((prev) =>
+      prev.map((c) =>
+        c.id === first.id || c.id === second.id
+          ? { ...c, isRevealed: false }
+          : c
+      )
+    );
+    setSelectedCards([]);
+    setWaitingForClick(false);
+
+    setLives((prevLives) => {
+      const newLives = prevLives - 1;
+      if (newLives <= 0) {
+        setShowGameOver(true);
+        return 0;
+      }
+      return newLives;
+    });
+  };
+
   const handleCardClick = (card: CurseCard) => {
     if (step !== "playing") return;
     if (card.isMatched || card.isRevealed || selectedCards.length === 2) return;
+    if (waitingForClick) return;
 
     const revealedCard = { ...card, isRevealed: true };
     const updatedCards = cards.map((c) =>
@@ -121,31 +148,13 @@ export default function CurseOfCalculus() {
           }
         }, 500);
       } else {
-        setTimeout(() => {
-          setCards((prev) =>
-            prev.map((c) =>
-              c.id === first.id || c.id === second.id
-                ? { ...c, isRevealed: false }
-                : c
-            )
-          );
-          setSelectedCards([]);
-
-          setLives((prevLives) => {
-            const newLives = prevLives - 1;
-            if (newLives <= 0) {
-              setShowGameOver(true);
-              return 0;
-            }
-            return newLives;
-          });
-        }, 1000);
+        setWaitingForClick(true);
       }
     }
   };
 
   return (
-    <div>
+    <div onClick={handleGlobalClick}>
       <JwtListener />
 
       {step === "intro" && (
