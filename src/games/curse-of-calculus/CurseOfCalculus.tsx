@@ -178,7 +178,7 @@ export default function CurseOfCalculus() {
 
       {step === "playing" && (
         <>
-          <p>Lives: {lives}</p>
+          <p className={styles.lives}>Lives: {lives}</p>
           <GameBoard cards={cards} onCardClick={handleCardClick} />
         </>
       )}
