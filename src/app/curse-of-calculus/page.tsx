@@ -33,8 +33,8 @@ export default function CurseOfCalculusPage() {
                 Welcome to why.
               </p>
             </div>
-            <CurseOfCalculus />
           </div>
+          <CurseOfCalculus />
         </div>
       </main>
     </>
