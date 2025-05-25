@@ -44,9 +44,20 @@ export default function CurseOfCalculusPage() {
                 onClose={() => setIsModalOpen(false)}
                 title="Game Rules"
               >
-                <p className={josefin_sans.className}>
-                  Here are the rules of the game...
-                </p>
+                <div
+                  className={`${styles.gameRules} ${josefin_sans.className}`}
+                >
+                  <p>Dare to enter the arena for just €5...</p>
+                  <p>
+                    Test your wits in a battle of memory—match arcane
+                    mathematical expressions to survive.
+                  </p>
+                  <p>
+                    Armed with 9 precious lives, you must endure the challenge
+                    to uncover the legendary...
+                  </p>
+                  <p>✨ Platinum Pallas Cat ✨</p>
+                </div>
               </Modal>
             </div>
           </div>
