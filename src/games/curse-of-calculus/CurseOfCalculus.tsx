@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "@/games/curse-of-calculus/CurseOfCalculus.module.css";
 import JwtListener from "@/components/JwtListener/JwtListener";
+import Button from "@/components/Button/Button";
 import Modal from "@/components/Modal/Modal";
 import GameBoard from "@/components/curse-of-calculus/GameBoard/GameBoard";
 import mathPairs from "@/data/mathPairs.json";
@@ -143,13 +144,12 @@ export default function CurseOfCalculus() {
 
       {step === "intro" && (
         <div className={styles.introWrapper}>
-          <button
+          <Button
             onClick={handlePlayClick}
             disabled={loading}
-            className={styles.playButton}
-          >
-            {loading ? "Processing..." : "Buy Ticket to Play"}
-          </button>
+            text={loading ? "Processing..." : "Buy Ticket to Play"}
+            style={{ backgroundColor: "#780000", borderColor: "#bc2222" }}
+          />
         </div>
       )}
 
