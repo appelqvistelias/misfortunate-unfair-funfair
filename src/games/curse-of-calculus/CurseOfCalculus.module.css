@@ -10,15 +10,27 @@
   font-size: clamp(1.6rem, 3vw, 2.4rem);
 }
 
-.gameRules {
+.gameRules,
+.victoryModal,
+.gameOverModal,
+.errorModal {
   display: flex;
   flex-direction: column;
   margin-top: 3rem;
   gap: 2rem;
 }
 
+.stampImage {
+  position: relative;
+  width: 100%;
+  height: 30rem;
+}
+
 @media (min-width: 768px) {
-  .gameRules {
+  .gameRules,
+  .victoryModal,
+  .gameOverModal,
+  .errorModal {
     margin-top: 5rem;
     gap: 3rem;
   }
