@@ -15,14 +15,13 @@ const CARD_PAIRS = 9;
 export default function CurseOfCalculus() {
   const [step, setStep] = useState<"intro" | "playing" | "victory">("intro");
   const [loading, setLoading] = useState(false);
-  const [showVictory, setShowVictory] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
   const [cards, setCards] = useState<CurseCard[]>([]);
   const [selectedCards, setSelectedCards] = useState<CurseCard[]>([]);
   const [matchedPairs, setMatchedPairs] = useState<number[]>([]);
   const [lives, setLives] = useState<number>(9);
   const [showGameOver, setShowGameOver] = useState(false);
+  const [showVictory, setShowVictory] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (step === "playing") {
