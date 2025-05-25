@@ -4,6 +4,7 @@ import { Josefin_Sans } from "next/font/google";
 const josefin_sans = Josefin_Sans({ subsets: ["latin"], weight: "400" });
 
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import styles from "@/games/curse-of-calculus/CurseOfCalculus.module.css";
 import JwtListener from "@/components/JwtListener/JwtListener";
 import Button from "@/components/Button/Button";
@@ -189,7 +190,7 @@ export default function CurseOfCalculus() {
         title="Game Rules"
       >
         <div className={styles.gameRules}>
-          <p>{`Dare to enter the arena for just €${GAME_CONFIG.COST}...`}</p>
+          <p>{`Dare to enter the arena for just €${GAME_CONFIG.COST}`}</p>
           <p>
             Test your wits in a battle of memory—match arcane mathematical
             expressions to survive.
@@ -211,8 +212,20 @@ export default function CurseOfCalculus() {
         }}
         title="Well done!"
       >
-        <p>You did pay attention during math class!</p>
-        <p>Take this Platinum Pallas Cat stamp!</p>
+        <div className={styles.victoryModal}>
+          <p>Nice job paying attention in math class!</p>
+          <p>Take this Platinum Pallas Cat stamp as a reward!</p>
+          <p>You definitely earned it!</p>
+          <div className={styles.stampImage}>
+            <Image
+              src="/img/curse-of-calculus/platinum-pallas-cat-stamp.svg"
+              alt="Platinum Pallas Cat Stamp"
+              fill
+              style={{ objectFit: "contain" }}
+              priority
+            />
+          </div>
+        </div>
       </Modal>
 
       {/* Game Over Modal */}
@@ -225,8 +238,10 @@ export default function CurseOfCalculus() {
         }}
         title="Game Over"
       >
-        <p>Sorry, you ran out of lives!</p>
-        <p>Try again?</p>
+        <div className={styles.gameOverModal}>
+          <p>Sorry, you ran out of lives!</p>
+          <p>Try again?</p>
+        </div>
       </Modal>
 
       {/* Error Modal */}
@@ -238,7 +253,9 @@ export default function CurseOfCalculus() {
         }}
         title="⚠️ Error ⚠️"
       >
-        <p>{error}</p>
+        <div className={styles.errorModal}>
+          <p>{error}</p>
+        </div>
       </Modal>
     </div>
   );
