@@ -11,6 +11,8 @@ type ModalProps = {
   onClose: () => void;
   title?: string;
   children: React.ReactNode;
+  backgroundColor?: string;
+  borderColor?: string;
 };
 
 export default function Modal({
@@ -18,6 +20,8 @@ export default function Modal({
   onClose,
   title,
   children,
+  backgroundColor = "#780000",
+  borderColor = "#bc2222",
 }: ModalProps) {
   if (!isOpen) return null;
 
@@ -26,6 +30,12 @@ export default function Modal({
       <div
         className={`${styles.popup} ${josefin_sans.className}`}
         onClick={(e) => e.stopPropagation()}
+        style={{
+          backgroundColor,
+          borderColor,
+          borderStyle: "solid",
+          borderWidth: "1px",
+        }}
       >
         <button
           onClick={onClose}
