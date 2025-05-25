@@ -1,5 +1,8 @@
 "use client";
 
+import { Josefin_Sans } from "next/font/google";
+const josefin_sans = Josefin_Sans({ subsets: ["latin"], weight: "400" });
+
 import React, { useEffect, useState } from "react";
 import styles from "@/games/curse-of-calculus/CurseOfCalculus.module.css";
 import JwtListener from "@/components/JwtListener/JwtListener";
@@ -149,7 +152,11 @@ export default function CurseOfCalculus() {
           <Button
             onClick={() => setShowRules(true)}
             text="Rules"
-            style={{ backgroundColor: "#780000", borderColor: "#bc2222" }}
+            style={{
+              backgroundColor: "#780000",
+              borderColor: "#bc2222",
+              fontFamily: josefin_sans.style.fontFamily,
+            }}
           />
           <Button
             onClick={handlePlayClick}
@@ -159,7 +166,11 @@ export default function CurseOfCalculus() {
                 ? "Processing..."
                 : `Test your skills for €${GAME_CONFIG.COST}`
             }
-            style={{ backgroundColor: "#780000", borderColor: "#bc2222" }}
+            style={{
+              backgroundColor: "#780000",
+              borderColor: "#bc2222",
+              fontFamily: josefin_sans.style.fontFamily,
+            }}
           />
         </div>
       )}
