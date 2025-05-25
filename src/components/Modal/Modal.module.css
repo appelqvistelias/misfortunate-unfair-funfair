@@ -16,10 +16,9 @@
   background-color: #bc2222;
   border: 1px solid #780000;
   border-radius: 1rem;
-  max-width: 500px;
+  max-width: 65rem;
   width: 100%;
-  padding: 1.5rem;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  padding: 4rem 1.5rem 3rem 1.5rem;
   position: relative;
 }
 
@@ -39,7 +38,7 @@
 .closeButton {
   position: absolute;
   top: 1rem;
-  right: 1rem;
+  right: 1.5rem;
   background: transparent;
   border: none;
   font-size: 3rem;
@@ -47,4 +46,16 @@
   cursor: pointer;
   line-height: 1;
   padding: 0;
+}
+
+@media (min-width: 768px) {
+  .popup {
+    padding: 8rem 4rem 5rem 4rem;
+  }
+
+  .closeButton {
+    top: 2rem;
+    right: 2.5rem;
+    font-size: 6rem;
+  }
 }
