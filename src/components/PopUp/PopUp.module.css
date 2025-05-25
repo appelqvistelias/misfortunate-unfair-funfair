@@ -37,13 +37,14 @@
 }
 
 .closeButton {
-  background-color: #6b21a8;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  font-size: 1rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
   border: none;
+  font-size: 3rem;
+  color: white;
   cursor: pointer;
-  display: block;
-  margin: 0 auto;
+  line-height: 1;
+  padding: 0;
 }

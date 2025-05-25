@@ -27,11 +27,15 @@ export default function Modal({
         className={`${styles.popup} ${josefin_sans.className}`}
         onClick={(e) => e.stopPropagation()}
       >
+        <button
+          onClick={onClose}
+          className={styles.closeButton}
+          aria-label="Close modal"
+        >
+          &times;
+        </button>
         {title && <h2 className={styles.title}>{title}</h2>}
         <div className={styles.content}>{children}</div>
-        <button onClick={onClose} className={styles.closeButton}>
-          Close
-        </button>
       </div>
     </div>
   );
