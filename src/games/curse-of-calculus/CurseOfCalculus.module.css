@@ -1,37 +1,19 @@
-.introWrapper {
-  text-align: center;
-  margin-top: 2rem;
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.playButton {
-  background-color: #6b21a8;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 0.75rem;
-  font-size: 1.25rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+.gameRules {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+  gap: 2rem;
 }
 
-.playButton:hover {
-  background-color: #581c87;
-}
-
-.errorMessage {
-  color: red;
-  margin-top: 1rem;
-}
-
-.victoryWrapper {
-  text-align: center;
-  margin-top: 1rem;
-}
-
-.victoryButton {
-  text-decoration: underline;
-  color: #2563eb;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font: inherit;
+@media (min-width: 768px) {
+  .gameRules {
+    margin-top: 5rem;
+    gap: 3rem;
+  }
 }

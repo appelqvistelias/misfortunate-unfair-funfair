@@ -145,7 +145,12 @@ export default function CurseOfCalculus() {
       <JwtListener />
 
       {step === "intro" && (
-        <div className={styles.introWrapper}>
+        <div className={styles.buttons}>
+          <Button
+            onClick={() => setShowRules(true)}
+            text="Rules"
+            style={{ backgroundColor: "#780000", borderColor: "#bc2222" }}
+          />
           <Button
             onClick={handlePlayClick}
             disabled={loading}
@@ -154,11 +159,6 @@ export default function CurseOfCalculus() {
                 ? "Processing..."
                 : `Test your skills for €${GAME_CONFIG.COST}`
             }
-            style={{ backgroundColor: "#780000", borderColor: "#bc2222" }}
-          />
-          <Button
-            onClick={() => setShowRules(true)}
-            text="Rules"
             style={{ backgroundColor: "#780000", borderColor: "#bc2222" }}
           />
         </div>
