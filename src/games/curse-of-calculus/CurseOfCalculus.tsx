@@ -2,12 +2,12 @@
 
 import React, { useEffect, useState } from "react";
 import styles from "@/games/curse-of-calculus/CurseOfCalculus.module.css";
-import mathPairs from "@/data/mathPairs.json";
-import GameBoard from "@/components/curse-of-calculus/GameBoard/GameBoard";
+import JwtListener from "@/components/JwtListener/JwtListener";
 import Modal from "@/components/Modal/Modal";
+import GameBoard from "@/components/curse-of-calculus/GameBoard/GameBoard";
+import mathPairs from "@/data/mathPairs.json";
 import { generateCards } from "@/games/curse-of-calculus/utils";
 import { CurseCard, CursePair } from "@/games/curse-of-calculus/types";
-import JwtListener from "@/components/JwtListener/JwtListener";
 import { buyTicket, awardStamp } from "@/lib/curse-of-calculus/transactions";
 
 const CARD_PAIRS = 9;
