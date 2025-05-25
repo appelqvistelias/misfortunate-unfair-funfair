@@ -1,3 +1,5 @@
+"use client";
+
 import { Offside } from "next/font/google";
 const offside = Offside({ subsets: ["latin"], weight: "400" });
 

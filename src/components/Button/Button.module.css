@@ -1,0 +1,21 @@
+.button {
+  background-color: black;
+  color: white;
+  padding: 1.5rem 2rem 1.2rem 2rem;
+  font-size: 1.25rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  border: 1px solid white;
+}
+
+.button:not(:disabled):hover {
+  background-color: #000 !important;
+}
+
+.button:disabled {
+  background-color: #444 !important;
+  cursor: not-allowed;
+}
