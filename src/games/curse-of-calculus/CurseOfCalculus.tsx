@@ -22,6 +22,7 @@ export default function CurseOfCalculus() {
   const [selectedCards, setSelectedCards] = useState<CurseCard[]>([]);
   const [matchedPairs, setMatchedPairs] = useState<number[]>([]);
   const [lives, setLives] = useState<number>(9);
+  const [showGameOver, setShowGameOver] = useState(false);
 
   useEffect(() => {
     if (step === "playing") {
@@ -77,7 +78,6 @@ export default function CurseOfCalculus() {
 
   const handleCardClick = (card: CurseCard) => {
     if (step !== "playing") return;
-
     if (card.isMatched || card.isRevealed || selectedCards.length === 2) return;
 
     const revealedCard = { ...card, isRevealed: true };
@@ -120,8 +120,7 @@ export default function CurseOfCalculus() {
           setLives((prevLives) => {
             const newLives = prevLives - 1;
             if (newLives <= 0) {
-              alert("Game Over! You ran out of lives.");
-              setStep("intro");
+              setShowGameOver(true);
               return 0;
             }
             return newLives;
@@ -155,16 +154,31 @@ export default function CurseOfCalculus() {
         </>
       )}
 
+      {/* Victory Modal */}
       <Modal
         isOpen={showVictory}
         onClose={() => {
           setShowVictory(false);
           setStep("intro");
         }}
-        title="Congratulations!"
+        title="Well done!"
       >
         <p>You did pay attention during math class!</p>
         <p>Take this Platinum Pallas Cat stamp!</p>
+      </Modal>
+
+      {/* Game Over Modal */}
+      <Modal
+        isOpen={showGameOver}
+        onClose={() => {
+          setShowGameOver(false);
+          setStep("intro");
+          setLives(9);
+        }}
+        title="Game Over"
+      >
+        <p>Sorry, you ran out of lives!</p>
+        <p>Try again?</p>
       </Modal>
     </div>
   );
