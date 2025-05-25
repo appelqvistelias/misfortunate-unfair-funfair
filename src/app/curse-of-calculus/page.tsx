@@ -12,6 +12,7 @@ import Navbar from "@/components/Navbar/Navbar";
 import CurseOfCalculus from "@/games/curse-of-calculus/CurseOfCalculus";
 import Button from "@/components/Button/Button";
 import Modal from "@/components/Modal/Modal";
+import { GAME_CONFIG } from "@/config/curse-of-calculus/game";
 
 export default function CurseOfCalculusPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -47,7 +48,7 @@ export default function CurseOfCalculusPage() {
                 <div
                   className={`${styles.gameRules} ${josefin_sans.className}`}
                 >
-                  <p>Dare to enter the arena for just €5...</p>
+                  <p>{`Dare to enter the arena for just €${GAME_CONFIG.COST}...`}</p>
                   <p>
                     Test your wits in a battle of memory—match arcane
                     mathematical expressions to survive.
