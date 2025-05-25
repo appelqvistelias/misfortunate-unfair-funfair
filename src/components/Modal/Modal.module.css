@@ -48,7 +48,7 @@
 
 @media (min-width: 768px) {
   .popup {
-    padding: 8rem 4rem 5rem 4rem;
+    padding: 8rem 2.5rem 3rem 2.5rem;
   }
 
   .closeButton {
