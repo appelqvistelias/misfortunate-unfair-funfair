@@ -2,7 +2,7 @@
 
 export const GAME_CONFIG = {
   AMUSEMENT_ID: 4, // madame misfortune
-  GROUP_ID: 5, // sandra & elias
+  GROUP_ID: 5,
   COST: 13.0,
   CURRENCY: "EUR",
   STAMP_ID: 14, // platinum raven
