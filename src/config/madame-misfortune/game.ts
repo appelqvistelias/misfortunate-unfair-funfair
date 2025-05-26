@@ -5,5 +5,5 @@ export const GAME_CONFIG = {
   GROUP_ID: 5, // elias & sandra
   COST: 13.0,
   CURRENCY: "EUR",
-  STAMP_ID: 14, // platinum raven
+  STAMP_ID: 16, // gold blobfish
 };
